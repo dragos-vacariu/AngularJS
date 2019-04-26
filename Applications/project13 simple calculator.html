@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<form>
+	<table>
+		<th>First Number:</th>
+		<th>Operation:</th>
+		<th>Second Number:</th>
+		<tr>
+			<td><input type="number" ng-style="myColorNo1" ng-keypress="print()" ng-model="number1" required></input>
+			<!-- ng-style directive is used for styling in angular.js -->
+			</td>
+			<td><select ng-model="operation">
+				<option></option>
+				<option>/</option>
+				<option>+</option>
+				<option>-</option>
+				<option>*</option>
+			</select></td>
+			<td><input type="number" ng-style="myColorNo2" ng-keypress="print()" ng-model="number2" required></input>
+			<!-- ng-style directive is used for styling in angular.js -->
+			</td>
+			<td><input type="button" ng-click = "check()" value = "Calculate"></input></td>
+		</tr>
+	</table>
+	<!--Message Log:-->
+	<p ng-bind = "message"></p>
+<form>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+var number1;
+app.controller('Controller', function($scope) {
+	//Initializing the models;
+	$scope.operation = '';
+	$scope.number1 = '';
+	$scope.number2 = '';
+	
+	$scope.print = function (){
+		$scope.message="Number1: " + $scope.number1 + " Number2: " + $scope.number2;
+	}
+	
+	$scope.check = function ()
+	{
+		$scope.myColorNo1 = {"background-color":"white",};
+		$scope.myColorNo2 = {"background-color":"white",};
+		$scope.message="";
+		if(angular.isNumber($scope.number1) == false) //checks wether the input form is for number or not.
+		{
+			$scope.message += "Enter a valid value for number 1.";
+			$scope.myColorNo1 = {
+			
+			//Here you can change the CSS fields as desired:
+			"background-color":"red", //the fields will be separated by coma (,).
+			
+			
+			}; 
+		}
+		else if($scope.operation == '')
+		{
+			$scope.message += "Select an operation.";
+		}
+		else if(angular.isNumber($scope.number2) == false) //checks wether the input form is for number or not.
+		{
+			$scope.message += "Enter a valid value for number 2.";
+			$scope.myColorNo2 = {"background-color":"red",}; //setting the html element background color to red.
+		}
+		else
+		{
+			if($scope.operation == '+'){
+				$scope.message = "Result: " + ($scope.number1 + $scope.number2);
+			}
+			else if($scope.operation == '*'){
+				$scope.message = "Result: " + ($scope.number1 * $scope.number2);
+			}
+			else if($scope.operation == "-"){
+				$scope.message = "Result: " + ($scope.number1 - $scope.number2);
+			}
+			else {
+				$scope.message = "Result: " + ($scope.number1 / $scope.number2);
+			}
+		}
+	}
+});
+</script>
+
+</body>
+</html>

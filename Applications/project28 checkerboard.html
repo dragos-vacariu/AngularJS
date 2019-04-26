@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<h5>Checkerboard:</h5>
+<table ng-style="{'border-color' : 'black', 'border-width' : '2px', 'border-style' : 'solid',}">
+	<tr ng-repeat="x in tableRowsCollection" ng-style="{'border-color' : 'black', 'border-width' : '2px', 'border-style' : 'solid',}">
+		<td ng-repeat="y in tableRowsCollection">
+			<div ng-show="y%2==0 && x%2==0" ng-style="{'border-color' : 'black', 'border-width' : '2px', 'border-style' : 'solid', 'padding':'30px', 'background-color': 'white'}">
+			</div>
+			<div ng-show="y%2==1 && x%2==1" ng-style="{'border-color' : 'black', 'border-width' : '2px', 'border-style' : 'solid', 'padding':'30px', 'background-color': 'white'}">
+			</div>
+			<div ng-show="y%2==0 && x%2==1" ng-style="{'border-color' : 'black', 'border-width' : '2px', 'border-style' : 'solid', 'padding':'30px', 'background-color': 'black'}">
+			</div>
+			<div ng-show="y%2==1 && x%2==0" ng-style="{'border-color' : 'black', 'border-width' : '2px', 'border-style' : 'solid', 'padding':'30px', 'background-color': 'black'}">
+			</div>
+		<td>
+	</tr>
+</table>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+
+app.controller('Controller', function($scope) {
+	$scope.tableRowsCollection = [1,2,3,4,5,6,7,8];
+}
+);
+</script>
+
+</body>
+</html>

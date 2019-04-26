@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<form>
+	<p >The car catalogue:</p>
+	<select ng-model="CarSelected" ng-change="OnChange()" >
+		<option ng-repeat="x in itemlist" value="{{x.item}}">{{x.name}}</option>
+	</select>
+	<div id = "divElem" style="margin-top:10px; width:200px; height:100px; background-position: center center; 
+							border-style:solid; border-width:2px; background-size: cover;"
+		ng-style="{'background-image' : Image}"
+		>
+	</div>
+	<!--Message Log:-->
+	<h4>Specs: </h4>
+	<table>
+		<tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
+		<tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
+		<tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
+		<tr><td ng-bind="Weight"></td><td ng-bind="Weight_value"></td></tr>
+	<table>
+<form>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+var number1;
+app.controller('Controller', function($scope) {
+	//Initializing the models;
+	$scope.Image="";
+	$scope.itemlist = [ {item : "ford_mustang_gt.png", color: "white", price: 15000, name: "Ford Mustang GT", speed: "322kw/h", weight: "1189kg",}, 
+						{item : "aston_martin.png", color: "white", price: 24500,  name: "Aston Martin", speed: "356kw/h", weight: "1120kg",}, 
+						{item : "toyota_corolla.png", color: "white", price: 7500, name: "Toyota Corolla", speed: "212kw/h", weight: "1409kg",}, 
+						{item : "mitsubishi_lancer.png", color: "white", price: 12000,  name: "Mitsubishi Lancer", speed: "282kw/h", weight: "1250kg",}, 
+						{item : "toyota_supra.png", color: "white", price: 11500, name: "Toyota Supra", speed: "285kw/h", weight: "1280kg",}];
+	$scope.OnChange = function (x)
+	{
+		$scope.Image = "url(" + $scope.CarSelected + ")";
+		
+		$scope.Name="";
+		$scope.Name_value="";
+		$scope.Price = "";
+		$scope.Price_value = "";
+		$scope.Speed = "";
+		$scope.Speed_value = "";
+		$scope.Weight = "";
+		$scope.Weight_value = "";
+		angular.forEach($scope.itemlist, function(value, key) {
+			if(value.item == $scope.CarSelected)
+			{
+				$scope.Name = "Name: ";
+				$scope.Name_value = value.name;
+				$scope.Price = "Price: ";
+				$scope.Price_value = value.price + "$";
+				$scope.Speed = "Maximum Speed: ";
+				$scope.Speed_value = value.speed;
+				$scope.Weight = "Weight: ";
+				$scope.Weight_value = value.weight;
+			}
+		});
+	}
+});
+</script>
+
+</body>
+</html>

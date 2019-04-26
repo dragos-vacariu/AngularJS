@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<form>
+	<p >The list is the following:</p>
+	<table>
+		<tr ng-repeat="x in itemlist">
+			<td ng-click="x.color='blue'" 
+			ng-dblclick="x.color='white'"
+			ng-style="x.style={'background-color': x.color}">{{x.item}}</td>
+		</tr>
+	</table>
+	<input type="button" ng-click="AddItemsToCart()" value="Add to cart"></input>
+	<!--Message Log:-->
+	<h4>Items in Cart: </h4>
+	<p ng-bind="message"></p>
+<form>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+var number1;
+app.controller('Controller', function($scope) {
+	//Initializing the models;
+	$scope.itemlist = [ {item : "Food", color: "white" }, 
+						{item : "Shoes", color: "white"  }, 
+						{item : "Cars", color: "white"  }, 
+						{item : "Clothes", color: "white"  }, 
+						{item : "Drinks", color: "white"  }];
+	$scope.AddItemsToCart = function ()
+	{
+		$scope.message="";
+		angular.forEach($scope.itemlist, function(value, key) {
+			if(value.color == "blue" )
+			{
+				$scope.message += value.item + ", ";
+				value.color = "white";
+			}
+		});
+	}
+});
+</script>
+
+</body>
+</html>

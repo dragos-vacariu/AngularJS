@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<p>Enter a number:</p>
+<input type="number" ng-model="numb" ng-change="ConvertToBinary()"></input>
+<h5>Binary Representation:</h5>
+<p ng-bind="reversed"></p>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+var number1;
+app.controller('Controller', function($scope) {
+	//Initializing the models;
+	$scope.numb=0;
+	$scope.message="";
+	$scope.ConvertToBinary = function ()
+	{
+		$scope.message="";
+		$scope.convertedValue = $scope.numb;
+		while($scope.convertedValue)
+		{
+			$scope.message += $scope.convertedValue % 2;
+			$scope.convertedValue = Math.floor($scope.convertedValue/2);
+		}
+		$scope.reversed="";
+		for(var i=$scope.message.length-1; i>-1; i--) //Reversing the string
+		{
+			$scope.reversed += $scope.message[i];
+		}
+	}
+}
+);
+</script>
+
+</body>
+</html>

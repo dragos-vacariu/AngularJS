@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<p>Enter your text:</p>
+<textarea type="text" ng-change = "onChange()" ng-model="message" col="250" rows = "8"></textarea>
+<form>
+	<select ng-change = "onChange()" ng-model="letter">
+		<option>a</option>
+		<option>e</option>
+		<option>i</option>
+		<option>o</option>
+		<option>u</option>
+		<option>y</option>
+	</select>
+	Replace with:
+	<select ng-change = "onChange()"  ng-model="symbol">
+		<option>*</option>
+		<option>^</option>
+		<option>$</option>
+		<option>@</option>
+		<option>+</option>
+		<option>#</option>
+	</select>
+</form>
+<h5>Result:</h5>
+<p ng-bind="result"></p>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+app.controller('Controller', function($scope) {
+	$scope.letter = "";
+	$scope.symbol = "";
+	$scope.message = "";
+	$scope.onChange = function()
+	{
+		if($scope.message.length>0)
+		{
+			if($scope.letter != "" && $scope.symbol != "")
+			{
+				$scope.result = "";
+				for(var i = 0; i < $scope.message.length; i++)
+				{
+					if($scope.message[i] == $scope.letter)
+					{
+						$scope.result += $scope.symbol;
+					}
+					else
+					{
+						$scope.result += $scope.message[i];
+					}
+				}
+			}
+			else
+			{
+				$scope.result = "Please select the letter and the symbol."
+			}
+		}
+		else
+		{
+			$scope.result = "Please enter some text."
+		}
+	}
+}
+);
+</script>
+
+</body>
+</html>

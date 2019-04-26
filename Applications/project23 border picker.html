@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<p>Choose a border within the form below:</p>
+<form>
+<table>
+<tr>
+	<td>Type:</td>
+	<td>Size:</td>
+	<td>Color:</td>
+</tr>
+<tr>
+	<td>
+		<select ng-model="BdType" ng-change="OnChange()">
+			<option>dotted</option>
+			<option>dashed</option>
+			<option>solid</option>
+			<option>double</option>
+			<option>groove</option>
+			<option>ridge</option>
+			<option>inset</option>
+			<option>none</option>
+			<option>hidden</option>
+		</select>
+	</td>
+	<td>
+		<select ng-model="BdSize" ng-change="OnChange()">
+			<option>1px</option>
+			<option>2px</option>
+			<option>3px</option>
+			<option>4px</option>
+			<option>5px</option>
+			<option>6px</option>
+		</select></td>
+	<td>
+		<select ng-model="BdColor" ng-change="OnChange()">
+			<option>blue</option>
+			<option>red</option>
+			<option>pink</option>
+			<option>green</option>
+			<option>yellow</option>
+			<option>orange</option>
+			<option>purple</option>
+		</select></td>
+	</td>
+</tr>
+</table>
+</form>
+<h5>Result:</h5>
+<p style="width:150px; height:100px; padding:50px;" ng-style="{'border-color' : BdColor, 
+								'border-width' : BdSize, 'border-style' : BdType}" ng-bind="Border"></p>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+
+app.controller('Controller', function($scope) {
+	$scope.BdType="";
+	$scope.BdSize="";
+	$scope.BdColor="";
+	$scope.Border="";
+	$scope.OnChange = function()
+	{
+		$scope.Border = $scope.BdType + " " + $scope.BdSize + " " + $scope.BdColor;
+	}
+}
+);
+</script>
+
+</body>
+</html>

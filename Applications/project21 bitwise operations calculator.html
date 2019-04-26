@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<p>Choose operation to perform:</p>
+<form>
+<input type="number" style="width:70px" ng-model="number1" ng-change="onChange()"></input>
+<select ng-model="operator" ng-change="onChange()">
+<option>& </option>
+<option>| </option>
+<option><< </option>
+<option>>> </option>
+</select>
+<input type="number" style="width:70px" ng-model="number2" ng-change="onChange()"></input>
+=
+<input type="number" style="width:70px" ng-model="result" ng-disabled="true"></input>
+</form>
+<h5>Log:</h5>
+<p ng-bind="message"></p>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+
+app.controller('Controller', function($scope) {
+	$scope.result = "";
+	$scope.number1 = "";
+	$scope.number2 = "";
+	$scope.operator = "";
+	$scope.message = "";
+	$scope.onChange = function()
+	{
+		$scope.message = "";
+		if($scope.operator!="" && $scope.number1!="" && $scope.number2!="")
+		{
+			switch($scope.operator)
+			{
+				case '& ': { $scope.result = ($scope.number1 & $scope.number2); break;}
+				case '| ': { $scope.result = ($scope.number1 | $scope.number2); break;}
+				case '<< ': { $scope.result = ($scope.number1 << $scope.number2); break;}
+				case '>> ': { $scope.result = ($scope.number1 >> $scope.number2); break;}
+				default: {break;}
+			}
+		}
+		else
+		{
+			$scope.message = "Please fulfill the required info.";
+		}
+	}
+}
+);
+</script>
+
+</body>
+</html>

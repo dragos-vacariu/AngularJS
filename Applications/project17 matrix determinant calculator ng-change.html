@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<div ng-show="dimension<2"> <!--The condition in ng-show directive will be evaluated to either true of false.-->
+	<p>Enter matrix dimension:</p>
+	<select style="width:40px" type = "number" ng-model="dimension">
+		<option>2</option>
+		<option>3</option>
+	</select>
+</div>
+<table ng-show="dimension>=2">
+	<p ng-show="dimension>=2">Enter your matrix below:</p>
+	<tr>
+		<td><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem00"></input></td>
+		<td><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem01"></input></td>
+		<td ng-show="dimension>2"><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem02"></input></td>
+	</tr>
+	<tr>
+		<td><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem10"></input></td>
+		<td><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem11"></input></td>
+		<td ng-show="dimension>2"><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem12"></input></td>
+	</tr>
+		<tr ng-show="dimension>2">
+		<td><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem20"></input></td>
+		<td><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem21"></input></td>
+		<td><input style="width:40px" type = "number" ng-change="onChange()" ng-model="elem22"></input></td>
+	</tr>
+</table>
+<p ng-show="dimension>=2">The determinant is: {{determinant}}</p>
+
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+var number1;
+app.controller('Controller', function($scope) {
+	//Initializing the models;
+	$scope.dimension = 0;
+	$scope.determinant = 0;
+	$scope.elem00 = 0;
+	$scope.elem01 = 0;
+	$scope.elem02 = 0;
+	$scope.elem10 = 0;
+	$scope.elem11 = 0;
+	$scope.elem12 = 0;
+	$scope.elem20 = 0;
+	$scope.elem21 = 0;
+	$scope.elem22 = 0;
+	$scope.onChange = function()
+	{
+		if($scope.dimension==2)
+		{
+			$scope.determinant = ($scope.elem00 + $scope.elem11) - ($scope.elem01 + $scope.elem10);
+		}
+		else if ($scope.dimension==3)
+		{
+			$scope.determinant = ( ($scope.elem00 * $scope.elem11 * $scope.elem22) 
+									+ ($scope.elem10 * $scope.elem21 * $scope.elem02)
+									+ ($scope.elem20 * $scope.elem01 * $scope.elem12) )
+									- ( ($scope.elem02 * $scope.elem11 * $scope.elem20) +
+									($scope.elem12 * $scope.elem21 * $scope.elem00) +
+									($scope.elem22 * $scope.elem01 * $scope.elem10) );
+		}
+	}
+});
+</script>
+
+</body>
+</html>

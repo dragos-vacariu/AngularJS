@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<form>
+	Add item to list:
+	<input type="text" ng-keypress = "Typing()" ng-style = "myStyle" ng-model="itemToAdd"></input>
+	<input type="button" ng-click="Add()" value="Add Item"></button>
+	<input type="button" ng-click="Clear()" value="Clear List"></button>
+
+	<p >The list is the following:</p>
+	<ul>
+		<li ng-repeat="x in itemlist">{{x}}</li>
+	</ul>
+	<!--Message Log:-->
+	<p ng-bind="message"></p>
+<form>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+var number1;
+app.controller('Controller', function($scope) {
+	//Initializing the models;
+	$scope.itemlist = [];
+	$scope.itemToAdd = "";
+	$scope.Add = function ()
+	{
+		$scope.message = "";
+		$scope.myStyle = {"background-color": "white",}; //color the input box to white before proceed
+		if($scope.itemToAdd == "")
+		{
+			$scope.message = "The input field is empty.";
+			$scope.myStyle = {"background-color": "pink",}; //color the input box to pink
+		}
+		else
+		{
+			$scope.itemlist.push($scope.itemToAdd); //add item to the list.
+			$scope.itemToAdd="";
+		}
+	}
+	$scope.Typing = function()
+	{
+		$scope.message = "";
+		$scope.myStyle = {"background-color": "white",};
+	}
+	$scope.Clear = function ()
+	{
+		$scope.itemlist = []; //clear the list
+	}
+});
+</script>
+
+</body>
+</html>

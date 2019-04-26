@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<p>Enter values  below:</p>
+<form>
+<table>
+<tr>
+	<td>Red:</td>
+	<td>Green:</td>
+	<td>Blue:</td>
+</tr>
+<tr>
+	<td><input type="number" ng-model="Red" style="width:70px;" ng-change="OnChange()"></input></td>
+	<td><input type="number" ng-model="Green" style="width:70px;" ng-change="OnChange()"></input></td>
+	<td><input type="number" ng-model="Blue" style="width:70px;" ng-change="OnChange()"></input></td>
+</tr>
+</table>
+</form>
+<h5>Result:</h5>
+<p style="width:100px; height:100px; padding:50px; border-style:solid; border-width:2px;" ng-style="{'background-color' : Color}" ng-bind="Color"></p>
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+
+app.controller('Controller', function($scope) {
+	$scope.Red=255;
+	$scope.Green=255;
+	$scope.Blue=255;
+	$scope.OnChange = function()
+	{
+		$scope.Color = "#"; 
+		if($scope.Red<10)
+		{
+			$scope.Color += "0" + ($scope.Red).toString(16);
+		}
+		else if($scope.Red>255)
+		{
+			$scope.Red = 255;
+			$scope.Color += ($scope.Red).toString(16);
+		}
+		else
+		{
+			$scope.Color += ($scope.Red).toString(16);
+		}
+		if ($scope.Green<10 )
+		{		
+			$scope.Color += "0" + ($scope.Green).toString(16);
+		}
+		else if($scope.Green>255)
+		{
+			$scope.Green = 255;
+			$scope.Color += ($scope.Green).toString(16);
+		}
+		else
+		{
+			$scope.Color += ($scope.Green).toString(16);
+		}
+		if ($scope.Blue<10 )
+		{		
+			$scope.Color += "0" + ($scope.Blue).toString(16);
+		}
+		else if($scope.Blue>255)
+		{
+			$scope.Blue = 255;
+			$scope.Color += ($scope.Blue).toString(16);
+		}
+		else
+		{
+			$scope.Color += ($scope.Blue).toString(16);
+		}
+	}
+}
+);
+</script>
+
+</body>
+</html>

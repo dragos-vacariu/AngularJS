@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body>
+
+<div ng-app="myApplication" ng-controller="Controller">
+<p>Feel free to browse our website.</p>
+<ul>
+<li><a href="" ng-click="page=1;">Music</a></li>
+<li><a href="" ng-click="page=2;">Video</a></li>
+<li><a href="" ng-click="page=3;">Forum</a></li>
+<li><a href="" ng-click="page=4;">Blog</a></li>
+</ul>
+
+<div ng-switch="page"> <!--Adding a variable to the form-->
+  <div ng-switch-when="1"> <!--Adding a switch to the form-->
+	 <h1>Music</h1>	
+	 <p>Welcome to a world of music.</p>
+  </div>
+  <div ng-switch-when="2"> <!--Adding a switch to the form-->
+
+	 <h1>Video</h1> 
+	 <p>This is the video page.</p>
+  </div>
+  <div ng-switch-when="3"> <!--Adding a switch to the form-->
+	 <h1>Forum</h1>
+	 <p>Feel free to ask anything.</p>
+  </div>
+    <div ng-switch-when="4"> <!--Adding a switch to the form-->
+	 <h1>Blog</h1>
+	 <p>Enjoy the lecture.</p>
+  </div>
+</div>
+
+
+</div>
+
+<script>
+var app = angular.module('myApplication', []);
+var number1;
+app.controller('Controller', function($scope) {
+	//Initializing the models;
+	$scope.page=0;
+});
+</script>
+
+</body>
+</html>
