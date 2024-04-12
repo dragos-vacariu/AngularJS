@@ -1,30 +1,78 @@
-<html>
+<!DOCTYPE html>
+<html  ng-app="myApplication" ng-controller="Controller">
 	<head>
-		<title>AngularJS Applications</title>
-		<link rel="stylesheet" href="./homepage_resources/homepage.css"> <!-- This is an external CSS -->
+		<title>{{pageObject.page_title}} AngularJS</title>
+		<meta charset = "UTF-8">
+		<!--Global resources-->
+		<link rel="stylesheet" href="../portfolio/website_resources/global/css/global.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../portfolio/website_resources/global/scripts/global_script.js"></script>
 	</head>
 	<body>
-		<div id ="pagination_div">
-			<h2>AngularJS Applications</h2>
-			<h4>Application Catalogue:</h4>
-			<table id = "pagination_table">
-				<tr><a href = "Applications/project28 checkerboard.html">Checkerboard</a href><br></tr>
-				<tr><a href = "Applications/project13 simple calculator.html">Simple Calculator</a href><br></tr>
-				<tr><a href = "Applications/project14 item list.html">Item List</a href><br></tr>
-				<tr><a href = "Applications/project15 add items to cart using angular.foreach.html">Add items to Cart</a href><br></tr>
-				<tr><a href = "Applications/project16 display content according to href.html">Display HREF Content</a href><br></tr>
-				<tr><a href = "Applications/project17 matrix determinant calculator ng-change.html">Matrix determinant calculator</a href><br></tr>
-				<tr><a href = "Applications/project18 decimal to binary converter, loops in angularjs.html">Decimal to Binary Converter</a href><br></tr>
-				<tr><a href = "Applications/project19 letter to symbol replacer.html">Letter to symbol replacer</a href><br></tr>
-				<tr><a href = "Applications/project20 age computer.html">Age computer</a href><br></tr>
-				<tr><a href = "Applications/project21 bitwise operations calculator.html">Bitwise operations</a href><br></tr>
-				<tr><a href = "Applications/project22 color picker, decimal to hex.html">Color Picker</a href><br></tr>
-				<tr><a href = "Applications/project23 border picker.html">Border Picker</a href><br></tr>
-				<tr><a href = "Applications/project24 customized tables.html">Customized Tables</a href><br></tr>
-				<tr><a href = "Applications/project25 shopping cart.html">Shopping Cart</a href><br></tr>
-				<tr><a href = "Applications/project26 car shop catalogue\project26 car shop catalogue.html">Car Shop</a href><br></tr>
-				<tr><a href = "Applications/\project27 car shop catalogue new template\project27 car shop catalogue new template.html">Car Shop New</a href><br></tr>
+		<nav>
+			<a class = "outer_href" href=../portfolio/{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+			<div class="dropdown_menu">
+				<button id = "selected_dropdown_button"  class="dropdown_button">{{pageObject.page_navigation[1].name}}</button>
+				<div class="dropdown_content">
+					<a ng-repeat="page in pageObject.page_navigation_dropdown" href=../{{page.value}}>{{page.name}}</a>
+				</div>
+			</div>
+			<a class = "outer_href"  href=../portfolio/{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+		</nav>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<div id="page_block">
+			<h2>Catalogue:</h2>
+			<table id = "content_table">
+				<tr>
+					<td>
+						<div id ="catalogue_div_left" style = "height:70vw;">
+							<ul class = "content_list">
+								<li ng-repeat="item in angularjs_projects_catalogue"><a  href = {{item.value}}>{{item.name}}</a></li>
+							</ul>
+						</div>
+					</td>
+					<td>
+						<div id="catalogue_div_right" style = "height:70vw;">
+							<img style = "height:45%; margin-right:10vw;" src="../portfolio/website_resources/global/images/mario.gif" alt="mario gif">
+						</div>
+					</td>
+				</tr>
 			</table>
 		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
 	</body>
 </html>
