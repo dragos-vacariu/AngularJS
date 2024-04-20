@@ -1,73 +1,148 @@
 <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Letter to Symbol Replacer</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Letter to Symbol Replacer</h2>
+			<h3>Letter to Symbol Replacer</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<p>Enter your text:</p>
+					<textarea type="text" ng-change = "onChange()" ng-model="message" col="250" rows = "8"></textarea>
+					<form>
+						<select ng-change = "onChange()" ng-model="letter">
+							<option>a</option>
+							<option>e</option>
+							<option>i</option>
+							<option>o</option>
+							<option>u</option>
+							<option>y</option>
+						</select>
+						Replace with:
+						<select ng-change = "onChange()"  ng-model="symbol">
+							<option>*</option>
+							<option>^</option>
+							<option>$</option>
+							<option>@</option>
+							<option>+</option>
+							<option>#</option>
+						</select>
+					</form>
+					<br><br>Result:
+					<p ng-bind="result"></p>
+				</h4>
 
-<body>
-
-<div ng-app="myApplication" ng-controller="Controller">
-<p>Enter your text:</p>
-<textarea type="text" ng-change = "onChange()" ng-model="message" col="250" rows = "8"></textarea>
-<form>
-	<select ng-change = "onChange()" ng-model="letter">
-		<option>a</option>
-		<option>e</option>
-		<option>i</option>
-		<option>o</option>
-		<option>u</option>
-		<option>y</option>
-	</select>
-	Replace with:
-	<select ng-change = "onChange()"  ng-model="symbol">
-		<option>*</option>
-		<option>^</option>
-		<option>$</option>
-		<option>@</option>
-		<option>+</option>
-		<option>#</option>
-	</select>
-</form>
-<h5>Result:</h5>
-<p ng-bind="result"></p>
-</div>
-
-<script>
-var app = angular.module('myApplication', []);
-app.controller('Controller', function($scope) {
-	$scope.letter = "";
-	$scope.symbol = "";
-	$scope.message = "";
-	$scope.onChange = function()
-	{
-		if($scope.message.length>0)
-		{
-			if($scope.letter != "" && $scope.symbol != "")
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+		var nested_app = angular.module('angular_app', []);
+		nested_app.controller('angular_Controller', function($scope) {
+			$scope.letter = "";
+			$scope.symbol = "";
+			$scope.message = "";
+			$scope.onChange = function()
 			{
-				$scope.result = "";
-				for(var i = 0; i < $scope.message.length; i++)
+				if($scope.message.length>0)
 				{
-					if($scope.message[i] == $scope.letter)
+					if($scope.letter != "" && $scope.symbol != "")
 					{
-						$scope.result += $scope.symbol;
+						$scope.result = "";
+						for(var i = 0; i < $scope.message.length; i++)
+						{
+							if($scope.message[i] == $scope.letter)
+							{
+								$scope.result += $scope.symbol;
+							}
+							else
+							{
+								$scope.result += $scope.message[i];
+							}
+						}
 					}
 					else
 					{
-						$scope.result += $scope.message[i];
+						$scope.result = "Please select the letter and the symbol."
 					}
 				}
+				else
+				{
+					$scope.result = "Please enter some text."
+				}
 			}
-			else
-			{
-				$scope.result = "Please select the letter and the symbol."
-			}
-		}
-		else
-		{
-			$scope.result = "Please enter some text."
-		}
-	}
-}
-);
-</script>
-
-</body>
+		});
+		/*combining 2 angular apps into single one*/
+		angular.module("CombineModule", ["myApplication", "angular_app"]);
+	</script>
 </html>

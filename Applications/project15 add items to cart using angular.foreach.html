@@ -1,49 +1,120 @@
 <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-
-<body>
-
-<div ng-app="myApplication" ng-controller="Controller">
-<form>
-	<p >The list is the following:</p>
-	<table>
-		<tr ng-repeat="x in itemlist">
-			<td ng-click="x.color='blue'" 
-			ng-dblclick="x.color='white'"
-			ng-style="x.style={'background-color': x.color}">{{x.item}}</td>
-		</tr>
-	</table>
-	<input type="button" ng-click="AddItemsToCart()" value="Add to cart"></input>
-	<!--Message Log:-->
-	<h4>Items in Cart: </h4>
-	<p ng-bind="message"></p>
-<form>
-</div>
-
-<script>
-var app = angular.module('myApplication', []);
-var number1;
-app.controller('Controller', function($scope) {
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Add Items to Cart</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Add Items to Cart</h2>
+			<h3>Add Items to Cart</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<p >Item List:</p>
+					<table style = "width: 10%; left: 0%; margin: 0%;">
+						<tr ng-repeat="x in itemlist">
+							<td ng-click="x.color='blue'" 
+							ng-dblclick="x.color='white'"
+							ng-style="x.style={'background-color': x.color}">{{x.item}}</td>
+						</tr>
+					</table><br>
+					<input type="button" ng-click="AddItemsToCart()" value="Add to cart"></input>
+					<br><br>Items in Cart: 
+					<p ng-bind="message"></p>
+				</h4>
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+	var nested_app = angular.module('angular_app', []);
+	nested_app.controller('angular_Controller', function($scope) {
 	//Initializing the models;
-	$scope.itemlist = [ {item : "Food", color: "white" }, 
-						{item : "Shoes", color: "white"  }, 
-						{item : "Cars", color: "white"  }, 
-						{item : "Clothes", color: "white"  }, 
-						{item : "Drinks", color: "white"  }];
-	$scope.AddItemsToCart = function ()
-	{
-		$scope.message="";
-		angular.forEach($scope.itemlist, function(value, key) {
-			if(value.color == "blue" )
-			{
-				$scope.message += value.item + ", ";
-				value.color = "white";
-			}
-		});
-	}
-});
+		$scope.itemlist = [ {item : "Food", color: "white" }, 
+							{item : "Shoes", color: "white"  }, 
+							{item : "Cars", color: "white"  }, 
+							{item : "Clothes", color: "white"  }, 
+							{item : "Drinks", color: "white"  }];
+		$scope.AddItemsToCart = function ()
+		{
+			$scope.message="";
+			angular.forEach($scope.itemlist, function(value, key) {
+				if(value.color == "blue" )
+				{
+					$scope.message += value.item + ", ";
+					value.color = "white";
+				}
+			});
+		}
+	});
+	/*combining 2 angular apps into single one*/
+	angular.module("CombineModule", ["myApplication", "angular_app"]);
 </script>
-
-</body>
 </html>

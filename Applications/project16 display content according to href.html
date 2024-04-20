@@ -1,49 +1,119 @@
 <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Display Content According to Href</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Display Content According to Href</h2>
+			<h3>Display Content According to Href</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<ul>
+						<li><a href="" ng-click="page=1;">Music</a></li>
+						<li><a href="" ng-click="page=2;">Video</a></li>
+						<li><a href="" ng-click="page=3;">Forum</a></li>
+						<li><a href="" ng-click="page=4;">Blog</a></li>
+					</ul>
+					<div ng-switch="page"> <!--Adding a variable to the form-->
+						<div ng-switch-when="1"> <!--Adding a switch to the form-->
+							 <h1>Music</h1>	
+							 <p>Welcome to a world of music.</p>
+						</div>
+						<div ng-switch-when="2"> <!--Adding a switch to the form-->
+							 <h1>Video</h1> 
+							 <p>This is the video page.</p>
+						</div>
+						<div ng-switch-when="3"> <!--Adding a switch to the form-->
+							 <h1>Forum</h1>
+							 <p>Feel free to ask anything.</p>
+						</div>
+						<div ng-switch-when="4"> <!--Adding a switch to the form-->
+							 <h1>Blog</h1>
+							 <p>Enjoy the lecture.</p>
+						</div>
+					</div>
+				</h4>
 
-<body>
-
-<div ng-app="myApplication" ng-controller="Controller">
-<p>Feel free to browse our website.</p>
-<ul>
-<li><a href="" ng-click="page=1;">Music</a></li>
-<li><a href="" ng-click="page=2;">Video</a></li>
-<li><a href="" ng-click="page=3;">Forum</a></li>
-<li><a href="" ng-click="page=4;">Blog</a></li>
-</ul>
-
-<div ng-switch="page"> <!--Adding a variable to the form-->
-  <div ng-switch-when="1"> <!--Adding a switch to the form-->
-	 <h1>Music</h1>	
-	 <p>Welcome to a world of music.</p>
-  </div>
-  <div ng-switch-when="2"> <!--Adding a switch to the form-->
-
-	 <h1>Video</h1> 
-	 <p>This is the video page.</p>
-  </div>
-  <div ng-switch-when="3"> <!--Adding a switch to the form-->
-	 <h1>Forum</h1>
-	 <p>Feel free to ask anything.</p>
-  </div>
-    <div ng-switch-when="4"> <!--Adding a switch to the form-->
-	 <h1>Blog</h1>
-	 <p>Enjoy the lecture.</p>
-  </div>
-</div>
-
-
-</div>
-
-<script>
-var app = angular.module('myApplication', []);
-var number1;
-app.controller('Controller', function($scope) {
-	//Initializing the models;
-	$scope.page=0;
-});
-</script>
-
-</body>
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+		var nested_app = angular.module('angular_app', []);
+		nested_app.controller('angular_Controller', function($scope) {
+			//Initializing the models;
+			$scope.page=0;
+		});
+		/*combining 2 angular apps into single one*/
+		angular.module("CombineModule", ["myApplication", "angular_app"]);
+	</script>
 </html>

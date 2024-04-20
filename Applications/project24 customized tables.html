@@ -1,162 +1,236 @@
 <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Customized Tables</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Customized Tables</h2>
+			<h3>Customized Tables</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<p>Create a customized table below:</p>
+					<table style = "width: 80%;">
+						<tr>
+							<td>Rows:</td>
+							<td>Columns:</td>
+							<td>Border:</td>
+							<td>BorderColor:</td>
+							<td>BorderSize:</td>
+							<td>TableBackground:</td>
+							<td>Padding:</td>
+							<td>FontFamily:</td>
+							<td>FontSize:</td>
+						</tr>
+						<tr>
+							<td>
+								<select ng-model="tableRows" ng-change="RowsChanged()">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>
+									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+								</select>
+							</td>
+							<td>
+								<select ng-model="tableColumns" ng-change="ColumnsChanged()">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+									<option>6</option>
+									<option>7</option>
+									<option>8</option>
+									<option>9</option>
+								</select></td>
+							<td>
+								<select ng-model="BorderStyle">
+									<option>dotted</option>
+									<option>dashed</option>
+									<option>solid</option>
+									<option>double</option>
+									<option>groove</option>
+									<option>ridge</option>
+									<option>inset</option>
+									<option>none</option>
+									<option>hidden</option>
+								</select>
+							</td>
+							<td>
+							<select ng-model="BorderColor">
+								<option>blue</option>
+								<option>red</option>
+								<option>green</option>
+							</select>
+							</td>
+							<td>
+							<select ng-model="BorderSize">
+								<option>1px</option>
+								<option>2px</option>
+								<option>3px</option>
+								<option>4px</option>
+								<option>5px</option>
+							</select></td>
+							</td>
+							<td>
+							<select ng-model="TableBackgroundColor">
+								<option>lightblue</option>
+								<option>pink</option>
+								<option>yellow</option>
+								<option>lightgray</option>
+								<option>white</option>
+							</select></td>
+							</td>
+							<td>
+							<select ng-model="PaddingSize">
+								<option>1px</option>
+								<option>2px</option>
+								<option>3px</option>
+								<option>4px</option>
+								<option>5px</option>
+							</select></td>
+							<td>
+							<select ng-model="FontFamily">
+								<option>Arial</option>
+								<option>Courier New</option>
+								<option>Tahoma</option>
+								<option>Trebucket MS</option>
+								<option>Consolas</option>
+							</select></td>
+							<td>
+							<select ng-model="FontSize">
+								<option>11px</option>
+								<option>12px</option>
+								<option>13px</option>
+								<option>14px</option>
+								<option>15px</option>
+							</select></td>
+						</tr>
+					</table>
+					<br><br>Result:<br><br>
+					<table ng-style="{'border-color' : BorderColor, 
+									'border-width' : BorderSize, 'border-style' : BorderStyle, 'background-color': TableBackgroundColor,
+									'font-family': FontFamily, 'font-size': FontSize, 'width' : '10%',  'margin': '0%', 'padding' : '0%' ,}">
+						<tr ng-repeat="x in tableRowsCollection" ng-style="{'border-color' : BorderColor, 'border-width' : BorderSize, 'border-style' : BorderStyle,}">
+							<td ng-repeat="y in tableColumnsCollection" 
+								ng-style="{'border-color' : BorderColor, 'border-width' : BorderSize, 
+								'border-style' : BorderStyle, 'padding':PaddingSize, 'width' : '10%',  'margin': '1vw', 'padding' : '1vw' ,
+									}">{{x.toString() + y.toString()}}<td>
+						</tr>
+					</table>
+				</h4>
 
-<body>
-
-<div ng-app="myApplication" ng-controller="Controller">
-<p>Create a customized table below:</p>
-<form>
-<table>
-<tr>
-	<td>Rows:</td>
-	<td>Columns:</td>
-	<td>Border:</td>
-	<td>BorderColor:</td>
-	<td>BorderSize:</td>
-	<td>TableBackground:</td>
-	<td>Padding:</td>
-	<td>FontFamily:</td>
-</tr>
-<tr>
-	<td>
-		<select ng-model="tableRows" ng-change="RowsChanged()">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			<option>5</option>
-			<option>6</option>
-			<option>7</option>
-			<option>8</option>
-			<option>9</option>
-		</select>
-	</td>
-	<td>
-		<select ng-model="tableColumns" ng-change="ColumnsChanged()">
-			<option>1</option>
-			<option>2</option>
-			<option>3</option>
-			<option>4</option>
-			<option>5</option>
-			<option>6</option>
-			<option>7</option>
-			<option>8</option>
-			<option>9</option>
-		</select></td>
-	<td>
-		<select ng-model="BorderStyle">
-			<option>dotted</option>
-			<option>dashed</option>
-			<option>solid</option>
-			<option>double</option>
-			<option>groove</option>
-			<option>ridge</option>
-			<option>inset</option>
-			<option>none</option>
-			<option>hidden</option>
-		</select>
-	</td>
-	<td>
-	<select ng-model="BorderColor">
-		<option>blue</option>
-		<option>red</option>
-		<option>green</option>
-	</select>
-	</td>
-	<td>
-	<select ng-model="BorderSize">
-		<option>1px</option>
-		<option>2px</option>
-		<option>3px</option>
-		<option>4px</option>
-		<option>5px</option>
-	</select></td>
-	</td>
-	<td>
-	<select ng-model="TableBackgroundColor">
-		<option>lightblue</option>
-		<option>pink</option>
-		<option>yellow</option>
-		<option>lightgray</option>
-		<option>white</option>
-	</select></td>
-	</td>
-	<td>
-	<select ng-model="PaddingSize">
-		<option>1px</option>
-		<option>2px</option>
-		<option>3px</option>
-		<option>4px</option>
-		<option>5px</option>
-	</select></td>
-	<td>
-	<select ng-model="FontFamily">
-		<option>Arial</option>
-		<option>Courier New</option>
-		<option>Tahoma</option>
-		<option>Trebucket MS</option>
-		<option>Consolas</option>
-	</select></td>
-	<td>
-	<select ng-model="FontSize">
-		<option>11px</option>
-		<option>12px</option>
-		<option>13px</option>
-		<option>14px</option>
-		<option>15px</option>
-	</select></td>
-</tr>
-</table>
-</form>
-<h5>Result:</h5>
-<table ng-style="{'border-color' : BorderColor, 
-								'border-width' : BorderSize, 'border-style' : BorderStyle, 'background-color': TableBackgroundColor,
-								'font-family': FontFamily, 'font-size': FontSize,}">
-	<tr ng-repeat="x in tableRowsCollection" ng-style="{'border-color' : BorderColor, 'border-width' : BorderSize, 'border-style' : BorderStyle,}">
-		<td ng-repeat="y in tableColumnsCollection" 
-			ng-style="{'border-color' : BorderColor, 'border-width' : BorderSize, 'border-style' : BorderStyle, 'padding':PaddingSize,}"
-			>{{x.toString() + y.toString()}}<td>
-	</tr>
-</table>
-</div>
-
-<script>
-var app = angular.module('myApplication', []);
-
-app.controller('Controller', function($scope) {
-	$scope.tableColumns="";
-	$scope.tableRows="";
-	$scope.tableRowsCollection = [];
-	$scope.tableColumnsCollection = [];
-	$scope.BorderStyle="";
-	$scope.BorderColor="";
-	$scope.BorderSize="";
-	$scope.PaddingSize="";
-	$scope.TableBackgroundColor = "";
-	$scope.FontFamily = "";
-	$scope.FontSize = "";
-	$scope.RowsChanged = function () 
-	{
-		$scope.aux = parseInt($scope.tableRows);
-		$scope.tableRowsCollection = [];
-		for(var i=1; i < $scope.aux+1 ; i++)
-		{
-			$scope.tableRowsCollection.push(i);
-		}
-	}
-	$scope.ColumnsChanged = function () 
-	{
-		$scope.aux = parseInt($scope.tableColumns);
-		$scope.tableColumnsCollection = [];
-		for(var i=1; i < $scope.aux+1 ; i++)
-		{
-			$scope.tableColumnsCollection.push(i);
-		}
-	}
-}
-);
-</script>
-
-</body>
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+		var nested_app = angular.module('angular_app', []);
+		nested_app.controller('angular_Controller', function($scope) {
+			$scope.tableColumns="";
+			$scope.tableRows="";
+			$scope.tableRowsCollection = [];
+			$scope.tableColumnsCollection = [];
+			$scope.BorderStyle="";
+			$scope.BorderColor="";
+			$scope.BorderSize="";
+			$scope.PaddingSize="";
+			$scope.TableBackgroundColor = "";
+			$scope.FontFamily = "";
+			$scope.FontSize = "";
+			$scope.RowsChanged = function () 
+			{
+				$scope.aux = parseInt($scope.tableRows);
+				$scope.tableRowsCollection = [];
+				for(var i=1; i < $scope.aux+1 ; i++)
+				{
+					$scope.tableRowsCollection.push(i);
+				}
+			}
+			$scope.ColumnsChanged = function () 
+			{
+				$scope.aux = parseInt($scope.tableColumns);
+				$scope.tableColumnsCollection = [];
+				for(var i=1; i < $scope.aux+1 ; i++)
+				{
+					$scope.tableColumnsCollection.push(i);
+				}
+			}
+		});
+		/*combining 2 angular apps into single one*/
+		angular.module("CombineModule", ["myApplication", "angular_app"]);
+	</script>
 </html>

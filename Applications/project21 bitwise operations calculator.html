@@ -1,58 +1,130 @@
 <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Bitwise Operations Calculator</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Bitwise Operations Calculator</h2>
+			<h3>Bitwise Operations Calculator</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<p>Choose operation to perform:</p>
+					<input type="number" style="width:70px" ng-model="number1" ng-change="onChange()"></input>
+					<select ng-model="operator" ng-change="onChange()">
+					<option>& </option>
+					<option>| </option>
+					<option><< </option>
+					<option>>> </option>
+					</select>
+					<input type="number" style="width:70px" ng-model="number2" ng-change="onChange()"></input>
+					=
+					<input type="number" style="width:70px" ng-model="result" ng-disabled="true"></input>
+					<br><br>Log:
+					<p ng-bind="message"></p>
+				</h4>
 
-<body>
-
-<div ng-app="myApplication" ng-controller="Controller">
-<p>Choose operation to perform:</p>
-<form>
-<input type="number" style="width:70px" ng-model="number1" ng-change="onChange()"></input>
-<select ng-model="operator" ng-change="onChange()">
-<option>& </option>
-<option>| </option>
-<option><< </option>
-<option>>> </option>
-</select>
-<input type="number" style="width:70px" ng-model="number2" ng-change="onChange()"></input>
-=
-<input type="number" style="width:70px" ng-model="result" ng-disabled="true"></input>
-</form>
-<h5>Log:</h5>
-<p ng-bind="message"></p>
-</div>
-
-<script>
-var app = angular.module('myApplication', []);
-
-app.controller('Controller', function($scope) {
-	$scope.result = "";
-	$scope.number1 = "";
-	$scope.number2 = "";
-	$scope.operator = "";
-	$scope.message = "";
-	$scope.onChange = function()
-	{
-		$scope.message = "";
-		if($scope.operator!="" && $scope.number1!="" && $scope.number2!="")
-		{
-			switch($scope.operator)
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+		var nested_app = angular.module('angular_app', []);
+		nested_app.controller('angular_Controller', function($scope) {
+			$scope.result = "";
+			$scope.number1 = "";
+			$scope.number2 = "";
+			$scope.operator = "";
+			$scope.message = "";
+			$scope.onChange = function()
 			{
-				case '& ': { $scope.result = ($scope.number1 & $scope.number2); break;}
-				case '| ': { $scope.result = ($scope.number1 | $scope.number2); break;}
-				case '<< ': { $scope.result = ($scope.number1 << $scope.number2); break;}
-				case '>> ': { $scope.result = ($scope.number1 >> $scope.number2); break;}
-				default: {break;}
+				$scope.message = "";
+				if($scope.operator!="" && $scope.number1!="" && $scope.number2!="")
+				{
+					switch($scope.operator)
+					{
+						case '& ': { $scope.result = ($scope.number1 & $scope.number2); break;}
+						case '| ': { $scope.result = ($scope.number1 | $scope.number2); break;}
+						case '<< ': { $scope.result = ($scope.number1 << $scope.number2); break;}
+						case '>> ': { $scope.result = ($scope.number1 >> $scope.number2); break;}
+						default: {break;}
+					}
+				}
+				else
+				{
+					$scope.message = "Please fulfill the required info.";
+				}
 			}
-		}
-		else
-		{
-			$scope.message = "Please fulfill the required info.";
-		}
-	}
-}
-);
-</script>
-
-</body>
+		});
+		/*combining 2 angular apps into single one*/
+		angular.module("CombineModule", ["myApplication", "angular_app"]);
+	</script>
 </html>

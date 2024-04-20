@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Car Shop Catalogue</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Car Shop Catalogue</h2>
+			<h3>Car Shop Catalogue</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<p >The car catalogue:</p>
+					<table style="width: 80%;">
+						<tr>
+							<td ng-repeat="x in itemlist"> <div ng-click="OnClick(x)" 
+							ng-dblclick="x.color='white'"
+							ng-style="x.style={'width':'14vw', 'height':'8vw', 'background-image': 'url({{x.item}})', 'background-position': 'center center', 
+												'border-style':'solid','border-width':'2px', 'border-color': x.color,'background-size': 'cover',}"></div></td>
+						</tr>
+					</table>
+					<!--Message Log:-->
+					<p>Specs: <p>
+					<table style = "width: 30%; font-size: 1.4vw;">
+						<tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
+						<tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
+						<tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
+						<tr><td ng-bind="Weight"></td><td ng-bind="Weight_value"></td></tr>
+					</table>
+				</h4>
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+		var nested_app = angular.module('angular_app', []);
+		nested_app.controller('angular_Controller', function($scope) {
+			//Initializing the models;
+			$scope.Price = "";
+			$scope.Price_value = "";
+			$scope.Speed = "";
+			$scope.Speed_value = "";
+			$scope.Weight = "";
+			$scope.Weight_value = "";
+			$scope.Name="";
+			$scope.Name_value="";
+			$scope.itemlist = [ {item : "ford_mustang_gt.png", color: "white", price: 15000, name: "Ford Mustang GT", speed: "322kw/h", weight: "1189kg",}, 
+								{item : "aston_martin.png", color: "white", price: 24500,  name: "Aston Martin", speed: "356kw/h", weight: "1120kg",}, 
+								{item : "toyota_corolla.png", color: "white", price: 7500, name: "Toyota Corolla", speed: "212kw/h", weight: "1409kg",}, 
+								{item : "mitsubishi_lancer.png", color: "white", price: 12000,  name: "Mitsubishi Lancer", speed: "282kw/h", weight: "1250kg",}, 
+								{item : "toyota_supra.png", color: "white", price: 11500, name: "Toyota Supra", speed: "285kw/h", weight: "1280kg",}];
+			$scope.OnClick = function (x)
+			{
+				$scope.Name="";
+				$scope.Name_value="";
+				$scope.Price = "";
+				$scope.Price_value = "";
+				$scope.Speed = "";
+				$scope.Speed_value = "";
+				$scope.Weight = "";
+				$scope.Weight_value = "";
+				angular.forEach($scope.itemlist, function(value, key) {
+					if(value.item != x.item )
+					{
+						value.color = "white";
+					}
+					else
+					{
+						x.color = "blue";
+						$scope.Name = "Name: ";
+						$scope.Name_value = x.name;
+						$scope.Price = "Price: ";
+						$scope.Price_value = x.price + "$";
+						$scope.Speed = "Maximum Speed: ";
+						$scope.Speed_value = x.speed;
+						$scope.Weight = "Weight: ";
+						$scope.Weight_value = x.weight;
+					}
+				});
+			}
+		});
+		/*combining 2 angular apps into single one*/
+		angular.module("CombineModule", ["myApplication", "angular_app"]);
+	</script>
+</html>

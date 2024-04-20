@@ -1,129 +1,200 @@
 <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Age Computer</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Age Computer</h2>
+			<h3>Age Computer</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<p>Enter your birth info:</p>
+					<table style="width:15%;">
+						<tr><td>Year:</td><td>Month:</td><td>Day:</td></tr>
+						<tr>
+							<td>
+								<input type="number" min= "1900" style = "width:70px;" ng-change= "OnChange()" ng-style="{'background-color' : birthyear_color,}" ng-model = "birthyear" ng-change="YearChange()"></input>
+							</td>
+							<td>
+								<select ng-model="birthmonth" ng-change= "OnChange()">
+									<option value="0">January</option> <!--When January is selected birthmonth = 0 -->
+									<option value="1">February</option> <!--When February is selected birthmonth = 1 -->
+									<option value="2">March</option> <!--When March is selected birthmonth = 2 -->
+									<option value="3">April</option>
+									<option value="4">May</option>
+									<option value="5">June</option>
+									<option value="6">July</option>
+									<option value="7">August</option>
+									<option value="8">September</option>
+									<option value="9">October</option>
+									<option value="10">November</option>
+									<option value="11">December</option>
+								</select>
+							</td>
+							<td>
+								<input type="number" style = "width:40px;" ng-style="{'background-color' : birthday_color,}"ng-model = "birthday" ng-change= "OnChange()" ></input>
+							</td>
+						<tr>
+					</table>
+					<br>Age:
+					<p ng-bind="message"></p>
+				</h4>
 
-<body>
-
-<div ng-app="myApplication" ng-controller="Controller">
-<p>Enter your birth info:</p>
-<form>
-	<table>
-	<tr><td>Year:</td><td>Month:</td><td>Day:</td>
-	<tr>
-	<td>
-	<input type="number" style = "width:70px;" ng-style="{'background-color' : birthyear_color,}" ng-model = "birthyear" ng-change="YearChange()"></input>
-	</td>
-	<td>
-	<select ng-model="birthmonth">
-		<option value="0">January</option> <!--When January is selected birthmonth = 0 -->
-		<option value="1">February</option> <!--When February is selected birthmonth = 1 -->
-		<option value="2">March</option> <!--When March is selected birthmonth = 2 -->
-		<option value="3">April</option>
-		<option value="4">May</option>
-		<option value="5">June</option>
-		<option value="6">July</option>
-		<option value="7">August</option>
-		<option value="8">September</option>
-		<option value="9">October</option>
-		<option value="10">November</option>
-		<option value="11">December</option>
-	</select>
-	</td>
-	<td>
-	<input type="number" style = "width:40px;" ng-style="{'background-color' : birthday_color,}"ng-model = "birthday" ng-change= "DayChange()" ></input>
-	</td>
-	<tr>
-	</table>
-</form>
-<h5>Age:</h5>
-<p ng-bind="message"></p>
-</div>
-
-<script>
-var app = angular.module('myApplication', []);
-var date = new Date();
-var year = date.getFullYear();
-var month = date.getMonth();
-var day = date.getDay();
-app.controller('Controller', function($scope) {
-	$scope.message = "";
-	$scope.birthyear = "";
-	$scope.birthyear_color = "white";
-	$scope.birthday = "";
-	$scope.birthday_color = "white";
-	$scope.birthmonth = "";
-	$scope.DayChange = function()
-	{
-		if( $scope.birthyear > 2019 || $scope.birthyear < 1950)
-		{
-			$scope.message = "Wrong birth year.";
-			$scope.birthyear_color = "pink";
-		}
-		else
-		{
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+		var nested_app = angular.module('angular_app', []);
+		let currentDate = new Date();
+		let currentYear = currentDate.getFullYear();
+		nested_app.controller('angular_Controller', function($scope) {
+			$scope.message = "";
+			$scope.birthyear = "";
 			$scope.birthyear_color = "white";
-			if($scope.birthday<0)
+			$scope.birthday = "";
+			$scope.birthday_color = "white";
+			$scope.birthmonth = "";
+			$scope.OnChange = function()
 			{
-				$scope.message = "Wrong birth day.";
-				$scope.birthday_color = "pink";
-			}
-			else
-			{
-				if($scope.birthmonth!="")
+				if( $scope.birthyear > currentYear || $scope.birthyear < 1900)
 				{
-					$scope.message = "";
-					if($scope.birthday>31 && ($scope.birthmonth!="January" && $scope.birthmonth!="March" && $scope.birthmonth!="May"
-								&& $scope.birthmonth!="July" && $scope.birthmonth!="August" && $scope.birthmonth!="October" && $scope.birthmonth!="December") )
+					$scope.message = "Wrong birth year.";
+					$scope.birthyear_color = "pink";
+				}
+				else
+				{
+					$scope.birthyear_color = "white";
+					if($scope.birthday<0)
 					{
-						$scope.message = "Wrong birth day. Month has maximum 31 days";
+						$scope.message = "Wrong birth day.";
 						$scope.birthday_color = "pink";
-					}
-					else if($scope.birthday>30 && ($scope.birthmonth!="April" && $scope.birthmonth!="June" && $scope.birthmonth!="September" && $scope.birthmonth!="November"))
-					{
-						$scope.message = "Wrong birth day. Month has maximum 31 days";
-						$scope.birthday_color = "pink";
-					}
-					else if($scope.birthday>28 && $scope.birthmonth!="February")
-					{
-						if($scope.birthday>29 && $scope.birthyear%4==0)
-						{
-							$scope.message = "Wrong birth day. Month has maximum 29 days";
-							$scope.birthday_color = "pink";
-						}
-						else
-						{
-							$scope.message = "Wrong birth day. Month has maximum 28 days";
-							$scope.birthday_color = "pink";
-						}
 					}
 					else
 					{
-						$scope.message = (year - $scope.birthyear-1);
-						//month is 0 - 11;
-						if(month > $scope.birthmonth)
+						if($scope.birthmonth!="")
 						{
-							$scope.message = (year - $scope.birthyear);
-						}
-						else if(month == $scope.birthmonth)
-						{
-							if(day >= $scope.birthday)
+							$scope.message = "";
+							if($scope.birthday>31 && ($scope.birthmonth!="January" && $scope.birthmonth!="March" && $scope.birthmonth!="May"
+										&& $scope.birthmonth!="July" && $scope.birthmonth!="August" && $scope.birthmonth!="October" && $scope.birthmonth!="December") )
 							{
-								$scope.message = (year - $scope.birthyear);
+								$scope.message = "Wrong birth day. Month has maximum 31 days";
+								$scope.birthday_color = "pink";
+							}
+							else if($scope.birthday>30 && ($scope.birthmonth!="April" && $scope.birthmonth!="June" && $scope.birthmonth!="September" && $scope.birthmonth!="November"))
+							{
+								$scope.message = "Wrong birth day. Month has maximum 31 days";
+								$scope.birthday_color = "pink";
+							}
+							else if($scope.birthday>28 && $scope.birthmonth!="February")
+							{
+								if($scope.birthday>29 && $scope.birthyear%4==0)
+								{
+									$scope.message = "Wrong birth day. Month has maximum 29 days";
+									$scope.birthday_color = "pink";
+								}
+								else
+								{
+									$scope.message = "Wrong birth day. Month has maximum 28 days";
+									$scope.birthday_color = "pink";
+								}
+							}
+							else
+							{
+								$scope.message = (currentYear - $scope.birthyear-1);
+								//month is 0 - 11;
+								if(month > $scope.birthmonth)
+								{
+									$scope.message = (currentYear - $scope.birthyear);
+								}
+								else if(month == $scope.birthmonth)
+								{
+									if(day >= $scope.birthday)
+									{
+										$scope.message = (currentYear - $scope.birthyear);
+									}
+								}
+								$scope.birthday_color = "white";
 							}
 						}
-						$scope.birthday_color = "white";
+						else 
+						{
+							$scope.message = "Select month.";
+						}
 					}
 				}
-				else 
-				{
-					$scope.message = "Select month.";
-				}
 			}
-		}
-	}
-}
-);
-</script>
-
-</body>
+		});
+		/*combining 2 angular apps into single one*/
+		angular.module("CombineModule", ["myApplication", "angular_app"]);
+	</script>
 </html>

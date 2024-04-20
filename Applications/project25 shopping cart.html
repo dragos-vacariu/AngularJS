@@ -1,64 +1,136 @@
 <!DOCTYPE html>
-<html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-
-<body>
-
-<div ng-app="myApplication" ng-controller="Controller">
-<form>
-	<p >The product list is the following:</p>
-	<table>
-		<tr ng-repeat="x in itemlist">
-			<td ng-click="x.color='blue'" 
-			ng-dblclick="x.color='white'"
-			ng-style="x.style={'background-color': x.color, 'padding': '2px', }">{{x.item}}</td>
-			<td ng-click="x.color='blue'" 
-			ng-dblclick="x.color='white'"
-			ng-style="x.style={'background-color': x.color, 'padding': '2px',}">{{x.price}}$</td>
-		</tr>
-	</table>
-	<input type="button" ng-click="AddItemsToCart()" value="Add to cart"></input>
-	<!--Message Log:-->
-	<h4>Items in Cart: </h4>
-	<p ng-bind="message"></p>
-	<h4>Total Price: </h4>
-	<p ng-bind="Total"></p>
-<form>
-</div>
-
-<script>
-var app = angular.module('myApplication', []);
-var number1;
-app.controller('Controller', function($scope) {
-	//Initializing the models;
-	$scope.Total = "";
-	$scope.itemlist = [ {item : "Meal", color: "white", price: 28.5, }, 
-						{item : "Sneakers", color: "white", price: 32.1,   }, 
-						{item : "Toyota Corolla", color: "white", price: 11999, }, 
-						{item : "Jeans", color: "white", price: 199.9,  }, 
-						{item : "T-Shirt", color: "white", price: 19.9,  }, 
-						{item : "Hat", color: "white", price: 5.2,  }, 
-						{item : "Chess Game", color: "white", price: 15.4,  }, 
-						{item : "Wine", color: "white", price: 11.5,  }, 
-						{item : "Salad", color: "white", price: 1.5,  }, 
-						{item : "Pizza", color: "white", price: 12.9,  }, 
-						{item : "Beer", color: "white", price: 55.2, }];
-	$scope.AddItemsToCart = function ()
-	{
-		$scope.message="";
-		$scope.Total = 0;
-		angular.forEach($scope.itemlist, function(value, key) {
-			if(value.color == "blue" )
+<html ng-app="CombineModule" ng-controller = "Controller">
+	<head>
+		<title>{{pageObject.page_title}} Angular Shopping Cart</title>
+		<meta charset = "UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+		<!--Global resources-->
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/global.css">
+		<link rel="stylesheet" href="../../portfolio/website_resources/global/css/video_page.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		<script src="../../portfolio/website_resources/global/scripts/global_script.js"></script>
+		<!--Local resources-->
+		<link rel="stylesheet" href="./angular_app.css">
+	</head>
+	<body>
+		<header>
+			<div id="header_title">
+				<h2>{{pageObject.page_title}}</h2>
+			</div>				
+		</header>
+		<nav>
+			<table>
+				<tr>
+					<td>
+						<div>
+							<a class = "outer_href" href={{exitDir}}{{pageObject.page_navigation[0].value}}>{{pageObject.page_navigation[0].name}}</a>
+						</div>
+					</td>
+					<td id = "selected_webpage" >
+						<div class="dropdown_menu">
+							<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
+							<div class="dropdown_content">
+								<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{exitDir}}{{page.value}}>{{page.name}}</a>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div>
+							<a class = "outer_href"  href={{exitDir}}{{pageObject.page_navigation[2].value}}>{{pageObject.page_navigation[2].name}}</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</nav>
+		<div id="page_block">
+			<h2>Catalogue -> <a href={{exitDir}}{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Shopping Cart</h2>
+			<h3>Shopping Cart</h3>
+			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+				<h4> 
+					<p >The product list is the following:</p>
+					<table style="width: 30%;">
+						<tr ng-repeat="x in itemlist">
+							<td ng-click="x.color='blue'" 
+							ng-dblclick="x.color='white'"
+							ng-style="x.style={'background-color': x.color, 'padding': '2px', }">{{x.item}}</td>
+							<td ng-click="x.color='blue'" 
+							ng-dblclick="x.color='white'"
+							ng-style="x.style={'background-color': x.color, 'padding': '2px',}">{{x.price}}$</td>
+						</tr>
+					</table><br>
+					<input type="button" ng-click="AddItemsToCart()" value="Add to cart"></input>
+					<!--Message Log:-->
+					<p>Items in Cart: </p>
+					<p ng-bind="message"></p>
+					<p>Total Price: </p>
+					<p ng-bind="Total"></p>
+				</h4>
+			</div>		
+		</div>
+		<footer>
+			<h4>{{pageObject.footer_copyright}}</h4>
+			<h5>{{pageObject.footer_paragraph}}</h5>
+			<table>
+				<tr>
+					<th>{{pageObject.footer_table_headers[0]}}</th>
+					<th>{{pageObject.footer_table_headers[1]}}</th>
+					<th>{{pageObject.footer_table_headers[2]}}</th>
+				</tr>
+				<tr>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.template_info">{{x}}</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.connections_list">
+								<a class = "outer_href" href="https://www.{{x}}">{{x}}
+								</a>
+							</li>
+						</ul>
+					</td>
+					<td>
+						<ul class="footer_list">
+							<li ng-repeat="x in pageObject.tools_used">{{x}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</footer>
+	</body>
+	<script>
+		var nested_app = angular.module('angular_app', []);
+		nested_app.controller('angular_Controller', function($scope) {
+			//Initializing the models;
+			$scope.Total = "";
+			$scope.itemlist = [ {item : "Meal", color: "white", price: 28.5, }, 
+								{item : "Sneakers", color: "white", price: 32.1,   }, 
+								{item : "Toyota Corolla", color: "white", price: 11999, }, 
+								{item : "Jeans", color: "white", price: 199.9,  }, 
+								{item : "T-Shirt", color: "white", price: 19.9,  }, 
+								{item : "Hat", color: "white", price: 5.2,  }, 
+								{item : "Chess Game", color: "white", price: 15.4,  }, 
+								{item : "Wine", color: "white", price: 11.5,  }, 
+								{item : "Salad", color: "white", price: 1.5,  }, 
+								{item : "Pizza", color: "white", price: 12.9,  }, 
+								{item : "Beer", color: "white", price: 55.2, }];
+			$scope.AddItemsToCart = function ()
 			{
-				$scope.message += value.item + ", ";
-				value.color = "white";
-				$scope.Total += value.price;
+				$scope.message="";
+				$scope.Total = 0;
+				angular.forEach($scope.itemlist, function(value, key) {
+					if(value.color == "blue" )
+					{
+						$scope.message += value.item + ", ";
+						value.color = "white";
+						$scope.Total += value.price;
+					}
+				});
+				$scope.Total+="$";
 			}
 		});
-		$scope.Total+="$";
-	}
-});
-</script>
-
-</body>
+		/*combining 2 angular apps into single one*/
+		angular.module("CombineModule", ["myApplication", "angular_app"]);
+	</script>
 </html>
