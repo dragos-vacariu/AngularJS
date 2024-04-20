@@ -48,21 +48,21 @@
 			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
 				<h4> 
 					<p>Create a customized table below:</p>
-					<table style = "width: 80%;">
+					<table style = "width: 90%;">
 						<tr>
-							<td>Rows:</td>
-							<td>Columns:</td>
-							<td>Border:</td>
-							<td>BorderColor:</td>
-							<td>BorderSize:</td>
-							<td>TableBackground:</td>
-							<td>Padding:</td>
-							<td>FontFamily:</td>
-							<td>FontSize:</td>
+							<td style = "width: 10%;">Rows:</td>
+							<td style = "width: 10%;">Columns:</td>
+							<td style = "width: 10%;">Border:</td>
+							<td style = "width: 10%;">BorderColor:</td>
+							<td style = "width: 10%;">BorderSize:</td>
+							<td style = "width: 10%;">TableBackground:</td>
+							<td style = "width: 10%;">Padding:</td>
+							<td style = "width: 10%;">FontFamily:</td>
+							<td style = "width: 10%;">FontSize:</td>
 						</tr>
 						<tr>
-							<td>
-								<select ng-model="tableRows" ng-change="RowsChanged()">
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="tableRows" ng-change="RowsChanged()" style = "width:100%;">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -73,9 +73,9 @@
 									<option>8</option>
 									<option>9</option>
 								</select>
-							</td>
-							<td>
-								<select ng-model="tableColumns" ng-change="ColumnsChanged()">
+							</td >
+							<td style = "width: 10%; border: solid 2px black;" >
+								<select ng-model="tableColumns" ng-change="ColumnsChanged()" style = "width:100%;">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -86,8 +86,8 @@
 									<option>8</option>
 									<option>9</option>
 								</select></td>
-							<td>
-								<select ng-model="BorderStyle">
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="BorderStyle" style = "width:100%;">
 									<option>dotted</option>
 									<option>dashed</option>
 									<option>solid</option>
@@ -99,55 +99,60 @@
 									<option>hidden</option>
 								</select>
 							</td>
-							<td>
-							<select ng-model="BorderColor">
-								<option>blue</option>
-								<option>red</option>
-								<option>green</option>
-							</select>
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="BorderColor" style = "width:100%;">
+									<option>blue</option>
+									<option>red</option>
+									<option>green</option>
+								</select>
 							</td>
-							<td>
-							<select ng-model="BorderSize">
-								<option>1px</option>
-								<option>2px</option>
-								<option>3px</option>
-								<option>4px</option>
-								<option>5px</option>
-							</select></td>
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="BorderSize" style = "width:100%;">
+									<option>1px</option>
+									<option>2px</option>
+									<option>3px</option>
+									<option>4px</option>
+									<option>5px</option>
+								</select>
 							</td>
-							<td>
-							<select ng-model="TableBackgroundColor">
-								<option>lightblue</option>
-								<option>pink</option>
-								<option>yellow</option>
-								<option>lightgray</option>
-								<option>white</option>
-							</select></td>
 							</td>
-							<td>
-							<select ng-model="PaddingSize">
-								<option>1px</option>
-								<option>2px</option>
-								<option>3px</option>
-								<option>4px</option>
-								<option>5px</option>
-							</select></td>
-							<td>
-							<select ng-model="FontFamily">
-								<option>Arial</option>
-								<option>Courier New</option>
-								<option>Tahoma</option>
-								<option>Trebucket MS</option>
-								<option>Consolas</option>
-							</select></td>
-							<td>
-							<select ng-model="FontSize">
-								<option>11px</option>
-								<option>12px</option>
-								<option>13px</option>
-								<option>14px</option>
-								<option>15px</option>
-							</select></td>
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="TableBackgroundColor" style = "width:100%;">
+									<option>lightblue</option>
+									<option>pink</option>
+									<option>yellow</option>
+									<option>lightgray</option>
+									<option>white</option>
+								</select>
+							</td>
+							</td>
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="PaddingSize" style = "width:100%;">
+									<option>1px</option>
+									<option>2px</option>
+									<option>3px</option>
+									<option>4px</option>
+									<option>5px</option>
+								</select>
+							</td>
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="FontFamily" style = "width:100%;">
+									<option>Arial</option>
+									<option>Courier New</option>
+									<option>Tahoma</option>
+									<option>Trebucket MS</option>
+									<option>Consolas</option>
+								</select>
+							</td>
+							<td style = "width: 10%; border: solid 2px black;">
+								<select ng-model="FontSize" style = "width:100%;">
+									<option>11px</option>
+									<option>12px</option>
+									<option>13px</option>
+									<option>14px</option>
+									<option>15px</option>
+								</select>
+							</td>
 						</tr>
 					</table>
 					<br><br>Result:<br><br>
