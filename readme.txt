@@ -1,2 +1,2 @@
 Preview Application Catalogue Webpage:
-https://dragos-vacariu.github.io/AngularJS/
+https://dragos-vacariu.github.io/catalogue/AngularJS/
