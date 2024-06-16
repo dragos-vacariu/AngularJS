@@ -3,7 +3,8 @@
 #left_div{
 	position: relative;
 	width: 80%;
-	height: 20vw;
+	min-height: 20vw;
+	height: auto;
 	left: 10%;
 }
 
@@ -26,7 +27,7 @@
 }
 
 #left_div h4 {
-	width: 96%;
+	width: 100%;
 	left: 0%;
 	height: auto;
 	padding: 3%;
