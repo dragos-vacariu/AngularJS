@@ -1,3 +1,5 @@
+/*For some page the styles are set within the page using AngularJS*/
+
 #left_div{
 	position: relative;
 	width: 80%;
@@ -10,6 +12,7 @@
 	margin-top: 2%;
 	width: 90%;
 	left: 5%;
+    table-layout:fixed;
 }
 
 #left_div .input_field

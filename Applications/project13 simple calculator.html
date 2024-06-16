@@ -42,7 +42,7 @@
 						<th>Operation:</th>
 						<th>Second Number:</th>
 						<tr>
-							<td><input class="input_field" type="number" ng-style="colorButton1" ng-keyup="print()" ng-model="number1" required></input>
+							<td><input class="input_field" type="number" ng-style="colorButton1" ng-change="print()" ng-model="number1" required></input>
 							<!-- ng-style directive is used for styling in angular.js -->
 							</td>
 							<td><select class="input_field" ng-change="print()" ng-style="colorOperatorSelection" ng-model="operation" required>
@@ -52,7 +52,7 @@
 								<option>-</option>
 								<option>*</option>
 							</select></td>
-							<td><input class="input_field" type="number" ng-style="colorButton2" ng-keyup="print()" ng-model="number2" required></input>
+							<td><input class="input_field" type="number" ng-style="colorButton2" ng-change="print()" ng-model="number2" required></input>
 							<!-- ng-style directive is used for styling in angular.js -->
 							</td>
 						</tr>

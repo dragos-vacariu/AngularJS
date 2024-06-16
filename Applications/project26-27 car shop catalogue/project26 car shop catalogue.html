@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="../../../website_resources/global/css/video_page.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 		<!--Local resources-->
-		<link rel="stylesheet" href="./angular_app.css">
+		<link rel="stylesheet" href="../angular_app.css">
 	</head>
 	<body>
 		<header>
@@ -38,18 +38,18 @@
 			<h3>Car Shop Catalogue</h3>
 			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
 				<h4> 
-					<p >The car catalogue:</p>
-					<table style="width: 80%;">
+					<p style="font-size: 1.2vw; margin: 0%;">The car catalogue:</p>
+					<table style = "margin: 0%;">
 						<tr>
 							<td ng-repeat="x in itemlist"> <div ng-click="OnClick(x)" 
 							ng-dblclick="x.color='white'"
-							ng-style="x.style={'width':'14vw', 'height':'8vw', 'background-image': 'url({{x.item}})', 'background-position': 'center center', 
+							ng-style="x.style={'width':'12vw', 'height':'8vw', 'background-image': 'url({{x.item}})', 'background-position': 'center center', 
 												'border-style':'solid','border-width':'2px', 'border-color': x.color,'background-size': 'cover',}"></div></td>
 						</tr>
 					</table>
 					<!--Message Log:-->
-					<p>Specs: <p>
-					<table style = "width: 30%; font-size: 1.4vw;">
+					<p style="font-size: 1.2vw; margin: 0%;">Specs: </p>
+					<table style = "width: 30%; font-size: 1.2vw; margin: 0%;">
 						<tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
 						<tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
 						<tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>

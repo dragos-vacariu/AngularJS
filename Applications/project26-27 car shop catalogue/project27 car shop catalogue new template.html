@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="../../../website_resources/global/css/video_page.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 		<!--Local resources-->
-		<link rel="stylesheet" href="./angular_app.css">
+		<link rel="stylesheet" href="../angular_app.css">
 	</head>
 	<body>
 		<header>
@@ -34,22 +34,22 @@
 			</div>
 		</nav>
 		<div id="page_block">
-			<h2>Catalogue -> <a href={{{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Car Shop Catalogue New Concept</h2>
+			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Car Shop Catalogue New Concept</h2>
 			<h3>Car Shop Catalogue New Concept</h3>
 			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
 				<h4> 
-					<p>The car catalogue:</p>
-					<select ng-model="CarSelected" ng-change="OnChange()" style="position: relative; left:2%">
+					<p style="position: relative; margin: 0%; font-size: 1.2vw;">The car catalogue:</p>
+					<select ng-model="CarSelected" ng-change="OnChange()" style="position: relative; margin-left:2%; word-wrap: break-word; width: 30%;">
 						<option ng-repeat="x in itemlist" value="{{x.item}}">{{x.name}}</option>
 					</select>
-					<div id = "divElem" style="margin-top:10px; width:20vw; height:10vw; background-position: center center; 
-											border-style:solid; border-width:2px; background-size: cover;"
+					<div id = "divElem" style="margin-top:2%; width:30%; height:10vw; background-position: center center; 
+											border-style:solid; border-width:0.2vw; background-size: cover;"
 						ng-style="{'background-image' : Image, 'position' : 'relative', 'left' : '2%'}"
 						>
 					</div>
 					<!--Message Log:-->
-					<p>Specs:<p>
-					<table style ="width: 30%; font-size: 1.4vw;">
+					<p style="position: relative; margin: 0%; font-size: 1.2vw;">Specs:</p>
+					<table style =" position: relative;  width: 20vw; font-size: 1.2vw; margin: 0%; left: 2%;">
 						<tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
 						<tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
 						<tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
