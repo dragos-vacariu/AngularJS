@@ -36,28 +36,30 @@
 		</nav>
 		<div id="page_block">
 			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Car Shop Catalogue</h2>
-			<h3>Car Shop Catalogue</h3>
-			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
-				<h4> 
-					<p style="font-size: 1.2vw; margin: 0%;">The car catalogue:</p>
-					<table style = "margin: 0%;">
-						<tr>
-							<td ng-repeat="x in itemlist"> <div ng-click="OnClick(x)" 
-							ng-dblclick="x.color='white'"
-							ng-style="x.style={'width':'12vw', 'height':'8vw', 'background-image': 'url({{x.item}})', 'background-position': 'center center', 
-												'border-style':'solid','border-width':'2px', 'border-color': x.color,'background-size': 'cover',}"></div></td>
-						</tr>
-					</table>
-					<!--Message Log:-->
-					<p style="font-size: 1.2vw; margin: 0%;">Specs: </p>
-					<table style = "width: 30%; font-size: 1.2vw; margin: 0%;">
-						<tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
-						<tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
-						<tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
-						<tr><td ng-bind="Weight"></td><td ng-bind="Weight_value"></td></tr>
-					</table>
-				</h4>
-			</div>		
+			<div id = "block_content">
+                <h3>Car Shop Catalogue</h3>
+                <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+                    <h4> 
+                        <p style="font-size: 1.2vw; margin: 0%;">The car catalogue:</p>
+                        <table style = "margin: 0%;">
+                            <tr>
+                                <td ng-repeat="x in itemlist"> <div ng-click="OnClick(x)" 
+                                ng-dblclick="x.color='white'"
+                                ng-style="x.style={'width':'12vw', 'height':'8vw', 'background-image': 'url({{x.item}})', 'background-position': 'center center', 
+                                                    'border-style':'solid','border-width':'2px', 'border-color': x.color,'background-size': 'cover',}"></div></td>
+                            </tr>
+                        </table>
+                        <!--Message Log:-->
+                        <p style="font-size: 1.2vw; margin: 0%;">Specs: </p>
+                        <table style = "width: 30%; font-size: 1.2vw; margin: 0%;">
+                            <tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
+                            <tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
+                            <tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
+                            <tr><td ng-bind="Weight"></td><td ng-bind="Weight_value"></td></tr>
+                        </table>
+                    </h4>
+                </div>
+			</div>
 		</div>
 		<footer>
             <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>

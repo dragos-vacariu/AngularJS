@@ -36,22 +36,24 @@
 		</nav>
 		<div id="page_block">
 			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Add Items to Cart</h2>
-			<h3>Add Items to Cart</h3>
-			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
-				<h4> 
-					<p >Item List:</p>
-					<table style = "width: 10%; left: 0%; margin: 0%;">
-						<tr ng-repeat="x in itemlist">
-							<td ng-click="x.color='blue'" 
-							ng-dblclick="x.color='white'"
-							ng-style="x.style={'background-color': x.color}">{{x.item}}</td>
-						</tr>
-					</table><br>
-					<input type="button" ng-click="AddItemsToCart()" value="Add to cart"></input>
-					<br><br>Items in Cart: 
-					<p ng-bind="message"></p>
-				</h4>
-			</div>		
+			<div id = "block_content">
+                <h3>Add Items to Cart</h3>
+                <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+                    <h4> 
+                        <p >Item List:</p>
+                        <table style = "width: 10%; left: 0%; margin: 0%;">
+                            <tr ng-repeat="x in itemlist">
+                                <td ng-click="x.color='blue'" 
+                                ng-dblclick="x.color='white'"
+                                ng-style="x.style={'background-color': x.color}">{{x.item}}</td>
+                            </tr>
+                        </table><br>
+                        <input type="button" ng-click="AddItemsToCart()" value="Add to cart"></input>
+                        <br><br>Items in Cart: 
+                        <p ng-bind="message"></p>
+                    </h4>
+                </div>
+			</div>
 		</div>
 		<footer>
             <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>

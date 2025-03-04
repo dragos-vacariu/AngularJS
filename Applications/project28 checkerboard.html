@@ -36,23 +36,25 @@
 		</nav>
 		<div id="page_block">
 			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Checkerboard</h2>
-			<h3>Checkerboard</h3>
-			<div id="left_div" style = "height: auto;" ng-module="angular_app" ng-controller = "angular_Controller">
-				<table style="width: auto; margin: 0%; padding: 0%;">
-					<tr ng-repeat="x in tableRowsCollection">
-						<td ng-repeat="y in tableRowsCollection" style = "width: 80vw;">
-							<div ng-show="y%2==0 && x%2==0" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'white'}">
-							</div>
-							<div ng-show="y%2==1 && x%2==1" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'white'}">
-							</div>
-							<div ng-show="y%2==0 && x%2==1" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'black'}">
-							</div>
-							<div ng-show="y%2==1 && x%2==0" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'black'}">
-							</div>
-						<td>
-					</tr>
-				</table>
-			</div>		
+            <div id = "block_content">
+                <h3>Checkerboard</h3>
+                <div id="left_div" style = "height: auto;" ng-module="angular_app" ng-controller = "angular_Controller">
+                    <table style="width: auto; margin: 0%; padding: 0%;">
+                        <tr ng-repeat="x in tableRowsCollection">
+                            <td ng-repeat="y in tableRowsCollection" style = "width: 80vw;">
+                                <div ng-show="y%2==0 && x%2==0" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'white'}">
+                                </div>
+                                <div ng-show="y%2==1 && x%2==1" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'white'}">
+                                </div>
+                                <div ng-show="y%2==0 && x%2==1" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'black'}">
+                                </div>
+                                <div ng-show="y%2==1 && x%2==0" ng-style="{'border-color' : 'black', 'width': '5vw', 'height': '5vw', 'border-width' : '2px', 'border-style' : 'solid','margin' : '0vw', 'padding':'1.25vw', 'background-color': 'black'}">
+                                </div>
+                            <td>
+                        </tr>
+                    </table>
+                </div>
+            </div>	            
 		</div>
 		<footer>
             <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>

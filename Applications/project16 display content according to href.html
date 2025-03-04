@@ -36,36 +36,37 @@
 		</nav>
 		<div id="page_block">
 			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Display Content According to Href</h2>
-			<h3>Display Content According to Href</h3>
-			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
-				<h4> 
-					<ul>
-						<li><a href="" ng-click="page=1;">Music</a></li>
-						<li><a href="" ng-click="page=2;">Video</a></li>
-						<li><a href="" ng-click="page=3;">Forum</a></li>
-						<li><a href="" ng-click="page=4;">Blog</a></li>
-					</ul>
-					<div ng-switch="page"> <!--Adding a variable to the form-->
-						<div ng-switch-when="1"> <!--Adding a switch to the form-->
-							 <h1>Music</h1>	
-							 <p>Welcome to a world of music.</p>
-						</div>
-						<div ng-switch-when="2"> <!--Adding a switch to the form-->
-							 <h1>Video</h1> 
-							 <p>This is the video page.</p>
-						</div>
-						<div ng-switch-when="3"> <!--Adding a switch to the form-->
-							 <h1>Forum</h1>
-							 <p>Feel free to ask anything.</p>
-						</div>
-						<div ng-switch-when="4"> <!--Adding a switch to the form-->
-							 <h1>Blog</h1>
-							 <p>Enjoy the lecture.</p>
-						</div>
-					</div>
-				</h4>
-
-			</div>		
+			<div id = "block_content">
+                <h3>Display Content According to Href</h3>
+                <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+                    <h4> 
+                        <ul>
+                            <li><a href="" ng-click="page=1;">Music</a></li>
+                            <li><a href="" ng-click="page=2;">Video</a></li>
+                            <li><a href="" ng-click="page=3;">Forum</a></li>
+                            <li><a href="" ng-click="page=4;">Blog</a></li>
+                        </ul>
+                        <div ng-switch="page"> <!--Adding a variable to the form-->
+                            <div ng-switch-when="1"> <!--Adding a switch to the form-->
+                                 <h1>Music</h1>	
+                                 <p>Welcome to a world of music.</p>
+                            </div>
+                            <div ng-switch-when="2"> <!--Adding a switch to the form-->
+                                 <h1>Video</h1> 
+                                 <p>This is the video page.</p>
+                            </div>
+                            <div ng-switch-when="3"> <!--Adding a switch to the form-->
+                                 <h1>Forum</h1>
+                                 <p>Feel free to ask anything.</p>
+                            </div>
+                            <div ng-switch-when="4"> <!--Adding a switch to the form-->
+                                 <h1>Blog</h1>
+                                 <p>Enjoy the lecture.</p>
+                            </div>
+                        </div>
+                    </h4>
+                </div>
+			</div>
 		</div>
 		<footer>
             <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>

@@ -36,27 +36,28 @@
 		</nav>
 		<div id="page_block">
 			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Color Picker</h2>
-			<h3>Color Picker</h3>
-			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
-				<h4> 
-					<p>Enter values  below:</p>
-					<table style = "width: 15%;">
-						<tr>
-							<td>Red:</td>
-							<td>Green:</td>
-							<td>Blue:</td>
-						</tr>
-						<tr>
-							<td><input type="number" ng-model="Red" style="width:70px;" ng-change="OnChange()"></input></td>
-							<td><input type="number" ng-model="Green" style="width:70px;" ng-change="OnChange()"></input></td>
-							<td><input type="number" ng-model="Blue" style="width:70px;" ng-change="OnChange()"></input></td>
-						</tr>
-					</table>
-					<br><br>Result:<br>
-					<p style="width:10%; height:10%; padding:5%; border-style:solid; border-width:2px;" ng-style="{'background-color' : Color}" ng-bind="Color"></p>
-				</h4>
-
-			</div>		
+            <div id = "block_content">
+                <h3>Color Picker</h3>
+                <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+                    <h4> 
+                        <p>Enter values  below:</p>
+                        <table style = "width: 15%;">
+                            <tr>
+                                <td>Red:</td>
+                                <td>Green:</td>
+                                <td>Blue:</td>
+                            </tr>
+                            <tr>
+                                <td><input type="number" ng-model="Red" style="width:70px;" ng-change="OnChange()"></input></td>
+                                <td><input type="number" ng-model="Green" style="width:70px;" ng-change="OnChange()"></input></td>
+                                <td><input type="number" ng-model="Blue" style="width:70px;" ng-change="OnChange()"></input></td>
+                            </tr>
+                        </table>
+                        <br><br>Result:<br>
+                        <p style="width:10%; height:10%; padding:5%; border-style:solid; border-width:2px;" ng-style="{'background-color' : Color}" ng-bind="Color"></p>
+                    </h4>
+                </div>
+			</div>
 		</div>
 		<footer>
             <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>

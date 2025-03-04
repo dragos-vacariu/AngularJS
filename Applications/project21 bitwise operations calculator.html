@@ -36,25 +36,26 @@
 		</nav>
 		<div id="page_block">
 			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Bitwise Operations</h2>
-			<h3>Bitwise Operations</h3>
-			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
-				<h4> 
-					<p>Choose operation to perform:</p>
-					<input type="number" style="width:70px" ng-model="number1" ng-change="onChange()"></input>
-					<select ng-model="operator" ng-change="onChange()">
-					<option>& </option>
-					<option>| </option>
-					<option><< </option>
-					<option>>> </option>
-					</select>
-					<input type="number" style="width:70px" ng-model="number2" ng-change="onChange()"></input>
-					=
-					<input type="number" style="width:70px" ng-model="result" ng-disabled="true"></input>
-					<br><br>Log:
-					<p ng-bind="message"></p>
-				</h4>
-
-			</div>		
+            <div id = "block_content">
+                <h3>Bitwise Operations</h3>
+                <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+                    <h4> 
+                        <p>Choose operation to perform:</p>
+                        <input type="number" style="width:70px" ng-model="number1" ng-change="onChange()"></input>
+                        <select ng-model="operator" ng-change="onChange()">
+                        <option>& </option>
+                        <option>| </option>
+                        <option><< </option>
+                        <option>>> </option>
+                        </select>
+                        <input type="number" style="width:70px" ng-model="number2" ng-change="onChange()"></input>
+                        =
+                        <input type="number" style="width:70px" ng-model="result" ng-disabled="true"></input>
+                        <br><br>Log:
+                        <p ng-bind="message"></p>
+                    </h4>
+                </div>
+			</div>
 		</div>
 		<footer>
             <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>

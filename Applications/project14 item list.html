@@ -36,20 +36,22 @@
 		</nav>
 		<div id="page_block">
 			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Item List</h2>
-			<h3>Item List</h3>
-			<div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller">
-				<h4> 
-					Add item to list:
-					<input type="text" ng-keypress = "Typing()" ng-style = "myStyle" ng-model="itemToAdd"></input>
-					<input type="button" ng-click="Add()" value="Add Item"></button>
-					<input type="button" ng-click="Clear()" value="Clear List"></button>
-					<br><br>The list is the following:
-					<ul>
-						<li ng-repeat="x in itemlist">{{x}}</li>
-					</ul>
-					<p ng-bind="message"></p>
-				</h4>
-			</div>		
+            <div id = "block_content">
+                <h3>Item List</h3>
+                <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller">
+                    <h4> 
+                        Add item to list:
+                        <input type="text" ng-keypress = "Typing()" ng-style = "myStyle" ng-model="itemToAdd"></input>
+                        <input type="button" ng-click="Add()" value="Add Item"></button>
+                        <input type="button" ng-click="Clear()" value="Clear List"></button>
+                        <br><br>The list is the following:
+                        <ul>
+                            <li ng-repeat="x in itemlist">{{x}}</li>
+                        </ul>
+                        <p ng-bind="message"></p>
+                    </h4>
+                </div>
+			</div>
 		</div>
 		<footer>
             <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>
