@@ -27,11 +27,11 @@
 }
 
 #left_div h4 {
-	width: 60%;
-	left: 15%;
+	width: 80%;
 	height: auto;
 	padding: 3%;
     text-align: center;
+    margin: auto
 }
 
 #left_div ul{

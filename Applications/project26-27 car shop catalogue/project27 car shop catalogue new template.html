@@ -44,14 +44,14 @@
                         <select ng-model="CarSelected" ng-change="OnChange()" style="position: relative; margin-left:2%; word-wrap: break-word; width: 30%;">
                             <option ng-repeat="x in itemlist" value="{{x.item}}">{{x.name}}</option>
                         </select>
-                        <div id = "divElem" style="margin-top:2%; width:30%; height:10vw; background-position: center center; 
+                        <div id = "divElem" style="margin-top:2%; width:50%; height:12vw; background-position: center center; 
                                                 border-style:solid; border-width:0.2vw; background-size: cover;"
-                            ng-style="{'background-image' : Image, 'position' : 'relative', 'left' : '2%'}"
+                            ng-style="{'background-image' : Image, 'position' : 'relative', 'left' : '25%'}"
                             >
                         </div>
                         <!--Message Log:-->
-                        <p style="position: relative; margin: 0%; font-size: 1.2vw;">Specs:</p>
-                        <table style =" position: relative;  width: 20vw; font-size: 1.2vw; margin: 0%; left: 2%;">
+                        <p style="position: relative; margin: 0%; font-size: 1.4vw;">Specifications:</p>
+                        <table style ="position: relative; margin:auto; width: 100%; font-size: 1.2vw; margin: 0%; left: 2%;">
                             <tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
                             <tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
                             <tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
