@@ -41,7 +41,7 @@
                 <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
                     <h4> 
                         <p>Choose a border within the form below:</p>
-                        <table style="width: 10%;">
+                        <table style="width: 80%;">
                             <tr>
                                 <td>Type:</td>
                                 <td>Size:</td>
@@ -49,7 +49,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <select ng-model="BdType" ng-change="OnChange()">
+                                    <select ng-model="BdType" ng-change="OnChange()" style="width: 100%;">
                                         <option>dotted</option>
                                         <option>dashed</option>
                                         <option>solid</option>
@@ -62,7 +62,7 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select ng-model="BdSize" ng-change="OnChange()">
+                                    <select ng-model="BdSize" ng-change="OnChange()" style="width: 100%;">
                                         <option>1px</option>
                                         <option>2px</option>
                                         <option>3px</option>
@@ -71,7 +71,7 @@
                                         <option>6px</option>
                                     </select></td>
                                 <td>
-                                    <select ng-model="BdColor" ng-change="OnChange()">
+                                    <select ng-model="BdColor" ng-change="OnChange()" style="width: 100%;">
                                         <option>blue</option>
                                         <option>red</option>
                                         <option>pink</option>
@@ -84,7 +84,7 @@
                             </tr>
                         </table>
                         <br>Result:<br><br>
-                        <p style="width:15%; height:10%; padding:5%;" ng-style="{'border-color' : BdColor, 
+                        <p style="width:80%; height:5vw; padding:5%;" ng-style="{'border-color' : BdColor, 
                                                         'border-width' : BdSize, 'border-style' : BdType}" ng-bind="Border"></p>
                     </h4>
                 </div>

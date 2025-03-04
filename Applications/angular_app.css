@@ -23,12 +23,21 @@
 }
 
 #left_div table tr td{
-	width: 20%;
+	width: 60%;
 }
 
 #left_div h4 {
-	width: 100%;
-	left: 0%;
+	width: 60%;
+	left: 15%;
 	height: auto;
 	padding: 3%;
+    text-align: center;
+}
+
+#left_div ul{
+    list-style-type: none;
+}
+
+#left_div ul>li{
+    padding: 2px;
 }
