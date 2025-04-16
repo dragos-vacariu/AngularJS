@@ -1,42 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="CombineModule" ng-controller = "Controller">
-	<head>
-		<title>Angular Car Shop Catalogue New Concept</title>
-		<meta charset = "UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
-		<meta name="description" content="Portfolio implemented as means to present and/or demonstrate professional skills, work and efforts put into practice for building up a reliable knowledge foundation to facilitate the adaptability within a new environment, industry, toolchain workplace or with various technologies within the IT industry.">
+    <head>
+        <title>Angular Car Shop Catalogue New Concept</title>
+        <meta charset = "UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
+        <meta name="description" content="Portfolio implemented as means to present and/or demonstrate professional skills, work and efforts put into practice for building up a reliable knowledge foundation to facilitate the adaptability within a new environment, industry, toolchain workplace or with various technologies within the IT industry.">
         <meta name="keywords" content="HTML,CSS,XML,JavaScript,C,C++,C#,Java,Python,Unity,Programming,IT,Learning,Portal,Projects,Github,Skills,Documentation,Exercise,Examples,Coding,Samples,LinkedIn,Online,Software,Engineering,Scripts,Games,Web,Development,CV,Demonstration,Practice,Electronic,Automation,Computers,Systems,Challenge,AI,Repositories,Tips,Tricks,Know,How,To">
         <meta name="author" content="Vacariu Dragos">
         <link rel="icon" type="image/x-icon" href="../../../website_resources/global/images/favicon.ico">
         <!--Global resources-->
-		<link rel="stylesheet" href="../../../website_resources/global/css/global.css">
-		<link rel="stylesheet" href="../../../website_resources/global/css/video_page.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-		<!--Local resources-->
-		<link rel="stylesheet" href="../angular_app.css">
-	</head>
-	<body>
-		<header>
-			<div id="header_title">
-                <h2 id="page_title"></h2>
-                <p id="page_description"></p>
-			</div>				
-		</header>
-		<nav>
-			<div ng-repeat="page in pageObject.page_navigation" ng-style="selectedWebPageStyle(page, 'Catalogue')">
-				<a ng-if="page.name!='Catalogue'" class = "outer_href" href={{page.value}}>{{page.name}}</a>
-				
-				<div ng-if="page.name=='Catalogue'" class="dropdown_menu" style="padding:0%;">
-					<a class="outer_href">{{pageObject.page_navigation[1].name}}</a>
-					<div class="dropdown_content">
-						<a ng-repeat="page in pageObject.page_navigation_dropdown" href={{page.value}}>{{page.name}}</a>
-					</div>
-				</div>	
-			</div>
-		</nav>
-		<div id="page_block">
-			<h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Car Shop Catalogue New Concept</h2>
-			<div id = "block_content">
+        <link rel="stylesheet" href="../../../website_resources/global/css/global.css">
+        <link rel="stylesheet" href="../../../website_resources/global/css/video_page.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <!--Local resources-->
+        <link rel="stylesheet" href="../angular_app.css">
+    </head>
+    <body>
+        <header id="page_header">
+            <!--The content will be added from javascript-->
+        </header>
+        <div id="page_block">
+            <h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Car Shop Catalogue New Concept</h2>
+            <div id = "block_content">
                 <h3>Car Shop Catalogue New Concept</h3>
                 <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
                     <h4> 
@@ -59,64 +44,54 @@
                         </table>
                     </h4>
                 </div>
-			</div>
-		</div>
-		<footer>
-            <h4 id="copyright_message">{{pageObject.footer_copyright}}</h4>
-            <div id = "footer_tabelation_div">
-                <div class="footer_columns" ng-repeat="list_item in footer_table_contents">
-                    <p class="column_title">{{list_item.name}}:</p>
-                    <ul class="footer_list">
-                        <li ng-if = "list_item.content == 'text'" ng-repeat="item in list_item.list_values">{{item}}</li>
-                        <li ng-if = "list_item.content == 'objects_with_links'" ng-repeat="item in list_item.list_values"><a href="{{item.value}}">{{item.name}}</a></li>
-                    </ul>
-                </div>
             </div>
-            <h5 id="footer_endline">{{pageObject.footer_paragraph}}</h5>
+        </div>
+        <footer id="page_footer">
+            <!--The content will be added from javascript-->
         </footer> 
-	</body>
+    </body>
     <!--This resource has to be added here because we need the elements in the HTML document to exist before 
     running the script-->
     <!--Global resources-->
     <script src="../../../website_resources/global/scripts/global_script.js"></script>
-	<script>
-		var nested_app = angular.module('angular_app', []);
-		nested_app.controller('angular_Controller', function($scope) {
-			//Initializing the models;
-			$scope.Image="";
-			$scope.itemlist = [ {item : "ford_mustang_gt.png", color: "white", price: 15000, name: "Ford Mustang GT", speed: "322kw/h", weight: "1189kg",}, 
-								{item : "aston_martin.png", color: "white", price: 24500,  name: "Aston Martin", speed: "356kw/h", weight: "1120kg",}, 
-								{item : "toyota_corolla.png", color: "white", price: 7500, name: "Toyota Corolla", speed: "212kw/h", weight: "1409kg",}, 
-								{item : "mitsubishi_lancer.png", color: "white", price: 12000,  name: "Mitsubishi Lancer", speed: "282kw/h", weight: "1250kg",}, 
-								{item : "toyota_supra.png", color: "white", price: 11500, name: "Toyota Supra", speed: "285kw/h", weight: "1280kg",}];
-			$scope.OnChange = function (x)
-			{
-				$scope.Image = "url(" + $scope.CarSelected + ")";
-				
-				$scope.Name="";
-				$scope.Name_value="";
-				$scope.Price = "";
-				$scope.Price_value = "";
-				$scope.Speed = "";
-				$scope.Speed_value = "";
-				$scope.Weight = "";
-				$scope.Weight_value = "";
-				angular.forEach($scope.itemlist, function(value, key) {
-					if(value.item == $scope.CarSelected)
-					{
-						$scope.Name = "Name: ";
-						$scope.Name_value = value.name;
-						$scope.Price = "Price: ";
-						$scope.Price_value = value.price + "$";
-						$scope.Speed = "Maximum Speed: ";
-						$scope.Speed_value = value.speed;
-						$scope.Weight = "Weight: ";
-						$scope.Weight_value = value.weight;
-					}
-				});
-			}
-		});
-		/*combining 2 angular apps into single one*/
-		angular.module("CombineModule", ["myApplication", "angular_app"]);
-	</script>
+    <script>
+        var nested_app = angular.module('angular_app', []);
+        nested_app.controller('angular_Controller', function($scope) {
+            //Initializing the models;
+            $scope.Image="";
+            $scope.itemlist = [ {item : "ford_mustang_gt.png", color: "white", price: 15000, name: "Ford Mustang GT", speed: "322kw/h", weight: "1189kg",}, 
+                                {item : "aston_martin.png", color: "white", price: 24500,  name: "Aston Martin", speed: "356kw/h", weight: "1120kg",}, 
+                                {item : "toyota_corolla.png", color: "white", price: 7500, name: "Toyota Corolla", speed: "212kw/h", weight: "1409kg",}, 
+                                {item : "mitsubishi_lancer.png", color: "white", price: 12000,  name: "Mitsubishi Lancer", speed: "282kw/h", weight: "1250kg",}, 
+                                {item : "toyota_supra.png", color: "white", price: 11500, name: "Toyota Supra", speed: "285kw/h", weight: "1280kg",}];
+            $scope.OnChange = function (x)
+            {
+                $scope.Image = "url(" + $scope.CarSelected + ")";
+                
+                $scope.Name="";
+                $scope.Name_value="";
+                $scope.Price = "";
+                $scope.Price_value = "";
+                $scope.Speed = "";
+                $scope.Speed_value = "";
+                $scope.Weight = "";
+                $scope.Weight_value = "";
+                angular.forEach($scope.itemlist, function(value, key) {
+                    if(value.item == $scope.CarSelected)
+                    {
+                        $scope.Name = "Name: ";
+                        $scope.Name_value = value.name;
+                        $scope.Price = "Price: ";
+                        $scope.Price_value = value.price + "$";
+                        $scope.Speed = "Maximum Speed: ";
+                        $scope.Speed_value = value.speed;
+                        $scope.Weight = "Weight: ";
+                        $scope.Weight_value = value.weight;
+                    }
+                });
+            }
+        });
+        /*combining 2 angular apps into single one*/
+        angular.module("CombineModule", ["myApplication", "angular_app"]);
+    </script>
 </html>
