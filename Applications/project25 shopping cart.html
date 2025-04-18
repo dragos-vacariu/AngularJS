@@ -10,10 +10,9 @@
         <link rel="icon" type="image/x-icon" href="../../website_resources/global/images/favicon.ico">
         <!--Global resources-->
         <link rel="stylesheet" href="../../website_resources/global/css/global.css">
-        <link rel="stylesheet" href="../../website_resources/global/css/video_page.css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <!--Local resources-->
-        <link rel="stylesheet" href="./angular_app.css">
+        <link rel="stylesheet" href="./resources/angular_app.css">
     </head>
     <body>
         <header id="page_header">
@@ -22,16 +21,15 @@
         <div id="page_block">
             <h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Shopping Cart</h2>
             <div id = "block_content">
-                <h3>Shopping Cart</h3>
                 <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
                     <h4> 
                         <p >The product list is the following:</p>
                         <table style="width: 80%;">
                             <tr ng-repeat="x in itemlist">
-                                <td ng-click="x.color='blue'" 
+                                <td ng-click="x.color='lightblue'" 
                                 ng-dblclick="x.color='white'"
                                 ng-style="x.style={'background-color': x.color, 'padding': '2px', }">{{x.item}}</td>
-                                <td ng-click="x.color='blue'" 
+                                <td ng-click="x.color='lightblue'" 
                                 ng-dblclick="x.color='white'"
                                 ng-style="x.style={'background-color': x.color, 'padding': '2px',}">{{x.price}}$</td>
                             </tr>
@@ -76,7 +74,7 @@
                 $scope.message="";
                 $scope.Total = 0;
                 angular.forEach($scope.itemlist, function(value, key) {
-                    if(value.color == "blue" )
+                    if(value.color == "lightblue" )
                     {
                         $scope.message += value.item + ", ";
                         value.color = "white";

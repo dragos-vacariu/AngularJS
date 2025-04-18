@@ -1,0 +1,86 @@
+/*For some page the styles are set within the page using AngularJS*/
+
+#page_block #block_content
+{
+    position: relative;
+    display: block;
+    overflow: hidden;
+    /*flex-wrap: wrap;*/
+    word-wrap: break-word;
+    overflow: hidden; /*this will ensure that the floated video will not overlap with anything outside this container*/
+    margin: 2% auto;
+    padding: 2%;
+
+    font-family: Georgia;
+    font-size: 1.1rem;
+    text-align: left;
+    font-weight: normal;
+    font-style: italic;
+    border: solid 5px black;
+    line-height:1.7rem;
+
+    width: 98%;
+    height: fit-content;
+    border: solid 2px rgba(0,0,0,0.1);
+    border-radius: 5vw;
+    background-color: rgba(255,255,255,0.8);
+    background-image: url("./page_texture.jpg");
+    background-blend-mode: overlay;
+    background-position: center;
+    background-size: var(--header-footer-background-size);
+    background-repeat: repeat;*/
+    
+    /*The following will ensure that the width of the element will not grow with the added border-size.
+    So the border will be within the defined element width.
+    */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+#page_block #block_content h4{
+    font-weight: normal;
+}
+
+#left_div{
+	position: relative;
+	width: 80%;
+	min-height: 20vw;
+	height: auto;
+	left: 10%;
+}
+
+#left_div table{
+	position: relative;
+	margin-top: 2%;
+	width: 90%;
+	left: 5%;
+    table-layout:fixed;
+    font-family: Georgia;
+}
+
+#left_div .input_field
+{
+	width: 80%;
+	margin: 1%;
+}
+
+#left_div table tr td{
+	width: 60%;
+}
+
+#left_div h4 {
+	width: 80%;
+	height: auto;
+	padding: 3%;
+    text-align: center;
+    margin: auto
+}
+
+#left_div ul{
+    list-style-type: none;
+}
+
+#left_div ul>li{
+    padding: 2px;
+}
