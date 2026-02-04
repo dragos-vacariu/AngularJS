@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html ng-app="CombineModule" ng-controller = "Controller">
+<html>
     <head>
         <title>Angular Car Shop Catalogue New Concept</title>
+        
         <meta charset = "UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!--For mobile viewport proper resizing-->
-        <meta name="description" content="Portfolio implemented as means to present and/or demonstrate professional skills, work and efforts put into practice for building up a reliable knowledge foundation to facilitate the adaptability within a new environment, industry, toolchain workplace or with various technologies within the IT industry.">
-        <meta name="keywords" content="HTML,CSS,XML,JavaScript,C,C++,C#,Java,Python,Unity,Programming,IT,Learning,Portal,Projects,Github,Skills,Documentation,Exercise,Examples,Coding,Samples,LinkedIn,Online,Software,Engineering,Scripts,Games,Web,Development,CV,Demonstration,Practice,Electronic,Automation,Computers,Systems,Challenge,AI,Repositories,Tips,Tricks,Know,How,To">
-        <meta name="author" content="Vacariu Dragos">
+        <!--For mobile viewport proper resizing-->
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--Google verification -->
+        <meta name="google-site-verification" content="onS_i1AOmpRlObgSmQ5S3Hc2vWXqpaGcGb6_Nc0w6-s" />
+        <!-- Favicon -->
         <link rel="icon" type="image/x-icon" href="../../../website_resources/global/images/favicon.ico">
+        
         <!--Global resources-->
         <link rel="stylesheet" href="../../../website_resources/global/css/global.css">
+        <link rel="stylesheet" href="../../../website_resources/global/css/video_page.css">
+        <link rel="stylesheet" href="../../../website_resources/global/css/catalogue_style.css">
+        <script src="../../../website_resources/global/scripts/video_page_script.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        
         <!--Local resources-->
         <link rel="stylesheet" href="../resources/angular_app.css">
     </head>
@@ -18,29 +25,37 @@
         <header id="page_header">
             <!--The content will be added from javascript-->
         </header>
+        
         <div id="page_block">
-            <h2>Catalogue -> <a href={{angularjs_page.value}}>{{angularjs_page.name}}</a> -> Car Shop Catalogue New Concept</h2>
-            <div id = "block_content">
-                <div id="left_div" ng-module="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
-                    <h4> 
-                        <p style="position: relative; margin: 0%; font-size: 1.4vw;">The car catalogue:</p>
-                        <select ng-model="CarSelected" ng-change="OnChange()" style="position: relative; margin-left:2%; word-wrap: break-word; width: 30%;">
-                            <option ng-repeat="x in itemlist" value="{{x.item}}">{{x.name}}</option>
-                        </select>
-                        <div id = "divElem" style="margin: 2%; width:50%; height:15vw; background-position: center; 
-                                                border-style:solid; border-width:0.2vw; background-size: cover;"
-                            ng-style="{'background-image' : Image, 'position' : 'relative', 'left' : '25%'}"
-                            >
-                        </div>
-                        <!--Message Log:-->
-                        <p style="position: relative; margin: 0%; font-size: 1.4vw;">Specifications:</p>
-                        <table style ="position: relative; margin:auto; width: 100%; font-size: 1.2vw; margin: 0%; left: 2%;">
-                            <tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
-                            <tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
-                            <tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
-                            <tr><td ng-bind="Weight"></td><td ng-bind="Weight_value"></td></tr>
-                        </table>
-                    </h4>
+            <div id="page_content">
+                <div id="navigation">
+                    <!-- Actual sidebar content -->
+                    <div id="sidebar">
+
+                    </div>
+                </div>
+                <div id = "block_content">
+                    <div id="left_div" ng-app="angular_app" ng-controller = "angular_Controller"  style="height: auto;">
+                        <h4> 
+                            <p style="position: relative; margin: 0%; font-size: 1.4vw;">The car catalogue:</p>
+                            <select ng-model="CarSelected" ng-change="OnChange()" style="position: relative; margin-left:2%; word-wrap: break-word; width: 30%;">
+                                <option ng-repeat="x in itemlist" value="{{x.item}}">{{x.name}}</option>
+                            </select>
+                            <div id = "divElem" style="margin: 2%; width:50%; height:15vw; background-position: center; 
+                                                    border-style:solid; border-width:0.2vw; background-size: cover;"
+                                ng-style="{'background-image' : Image, 'position' : 'relative', 'left' : '25%'}"
+                                >
+                            </div>
+                            <!--Message Log:-->
+                            <p style="position: relative; margin: 0%; font-size: 1.4vw;">Specifications:</p>
+                            <table style ="position: relative; margin:auto; width: 100%; font-size: 1.2vw; margin: 0%; left: 2%;">
+                                <tr><td ng-bind="Name"></td><td ng-bind="Name_value"></td></tr>
+                                <tr><td ng-bind="Price"></td><td ng-bind="Price_value"></td></tr>
+                                <tr><td ng-bind="Speed"></td><td ng-bind="Speed_value"></td></tr>
+                                <tr><td ng-bind="Weight"></td><td ng-bind="Weight_value"></td></tr>
+                            </table>
+                        </h4>
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,9 +65,9 @@
     </body>
     <!--This resource has to be added here because we need the elements in the HTML document to exist before 
     running the script-->
+    
     <!--Global resources-->
     <script src="../../../website_resources/global/scripts/global_script.js"></script>
-    <script src="../../../website_resources/global/scripts/catalogue_item_selection_styling.js"></script>
     <script>
         var nested_app = angular.module('angular_app', []);
         nested_app.controller('angular_Controller', function($scope) {
@@ -91,6 +106,6 @@
             }
         });
         /*combining 2 angular apps into single one*/
-        angular.module("CombineModule", ["myApplication", "angular_app"]);
+        //angular.module("CombineModule", ["myApplication", "angular_app"]);
     </script>
 </html>
